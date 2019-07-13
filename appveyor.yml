@@ -2,7 +2,7 @@ version: 1.0.{build}
 # image: Visual Studio 2017
 environment:
   STATIC_SITE_REPO:
-    secure: +u0A9TohuPL+e66QhZANB0tU/lG+WihvlP/D2TOPlAA=
+    secure: +u0A9TohuPL+e66QhZANB9exCjdcxe9XUhdnFu5ojtybR3jsgXM000IZqmCHHryG
   TARGET_BRANCH:
     secure: eQBPkReZ/mmjzNZaccrD3w==
   GIT_USER_EMAIL:
@@ -46,3 +46,4 @@ on_success:
     - git add -A
     - git commit -m "Update Static Site"
     - git push origin %TARGET_BRANCH%
+    - appveyor AddMessage "Static Site Updated"
