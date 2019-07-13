@@ -7,8 +7,8 @@ environment:
   #    secure: eQBPkReZ/mmjzNZaccrD3w==
   #  GIT_USER_EMAIL:
   #    secure: kM3mIK9xSLBAoq/mJ+oaO3KR0dvIrC0EcsfjrwmtacU=
-  #  GIT_USER_NAME:
-  #    secure: wX822g4t5xXPI86jW/Oy7g==
+  GIT_USER_NAME:
+    secure: wX822g4t5xXPI86jW/Oy7g==
   access_token:
     secure: zt43vh97KFrDRrWr0I4KT435t2Qkqckh33yDFzyMUoLd2hn9eEHawvevds5jFj0/
   matrix:
@@ -40,8 +40,9 @@ on_success:
     - ps: cat "$env:USERPROFILE\.git-credentials"
     - echo "%GIT_USER_EMAIL%"
     - echo "%GIT_USER_NAME%"
+    - echo "$($GIT_USER_NAME)"
     - git config --global user.email "%GIT_USER_EMAIL%"
-    - git config --global user.name "%GIT_USER_NAME%"
+    - git config --global user.name "$($GIT_USER_NAME)"
     - ps: cat ~/.gitconfig
     - ps: dir ~/.gitconfig
     - git config -l
@@ -57,8 +58,10 @@ on_success:
     - SETLOCAL EnableDelayedExpansion & robocopy "%APPVEYOR_BUILD_FOLDER%\public" "%TEMP%\static-site" /e & IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1))
 #    - cp -rf "%APPVEYOR_BUILD_FOLDER%\public\*" "%TEMP%\static-site"
     - ls -al .
+    - pwd
     - git add -A
     - git config -l
     - git commit -m "Update Static Site"
+    - echo %TARGET_BRANCH%
     - git push -u origin %TARGET_BRANCH%
     - appveyor AddMessage "Static Site Updated"
