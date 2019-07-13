@@ -11,7 +11,7 @@ environment:
     secure: wX822g4t5xXPI86jW/Oy7g==
   access_token:
     secure: /cduz4dJwh1tw4LYN7rmZBAol4la2awQBsjZI/OufH53donbC87D94rjbPffD3Z4
-   matrix:
+  matrix:
     - MSYS2_ARCH: x86_64
       MSYSTEM: MINGW64
     - MSYS2_ARCH: i686
