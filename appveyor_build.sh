@@ -11,6 +11,10 @@ pacman -S --noconfirm git subversion mingw64/mingw-w64-x86_64-ruby\
 	   mingw64/mingw-w64-x86_64-sqlite3 msys/libsqlite-devel unzip
 
 # 
+echo ---------------
+echo %path%
+echo ---------------
 bash -x get_hugo.sh
+which bash
 hugo -t den --baseUrl="https://github.com/lsq/lsq.github.io"
 

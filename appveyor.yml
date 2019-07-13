@@ -26,6 +26,7 @@ init:
 
 # Fetch dependencies, build and run tests
 build_script:
+  - echo %path%
   - bash '%APPVEYOR_BUILD_FOLDER%\appveyor_build.sh'
 artifacts:
   - path: public
