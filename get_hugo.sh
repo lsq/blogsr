@@ -1,4 +1,5 @@
 #!/bin/bash
+set -exu
 # Version 0.1.0  8:26 PST, Nov 9, 2018
 # see https://discourse.gohugo.io/t/script-to-install-latest-hugo-release-on-macos-and-ubuntu/14774/10
 # if you have run into github api anonymous access limits then add user and token here or in environment
