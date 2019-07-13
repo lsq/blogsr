@@ -67,7 +67,7 @@ if ! [ $NEW_VERSION = $CUR_VERSION ]; then
     tar -xzf $TARBALL
   fi
 
-  chmod +x hugo
+  chmod +x hugo.exe
 
   if [ -w $BIN_DIR ]; then
     echo "Installing hugo to $BIN_DIR"
