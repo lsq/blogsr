@@ -68,7 +68,7 @@ if ! [ $NEW_VERSION = $CUR_VERSION ]; then
     tar -xzf $TARBALL
   fi
   
-  
+  ! [ -e hugo.exe ] && exit 1
   chmod +x hugo.exe 
 
   #if [ -w $BIN_DIR ]; then

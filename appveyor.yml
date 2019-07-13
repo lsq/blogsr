@@ -37,7 +37,7 @@ on_success:
     - which hugo | cygpath -w -f -
     # bash -c "cp `which git | cygpath -w -f - | cygpath -u -f -` ."
     - git config --global credential.helper store
-    - echo %access_token%
+#    - echo %access_token%
 #    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
 #    - ps: dir "$env:USERPROFILE\.git-credentials"
 #    - ps: cat "$env:USERPROFILE\.git-credentials"
@@ -46,8 +46,8 @@ on_success:
     - cygpath -w /home
 #    - cat ~/.git-credentials
 #    - cp 
-    - echo "%GIT_USER_EMAIL%"
-    - echo "%GIT_USER_NAME%"
+#    - echo "%GIT_USER_EMAIL%"
+#    - echo "%GIT_USER_NAME%"
 #    - echo "$($env:GIT_USER_NAME)"
     - git config --global user.email "%GIT_USER_EMAIL%"
     - git config --global user.name "%GIT_USER_NAME%"

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -exuo pipefail
 PKG_PREFIX="mingw-w64-$MSYS2_ARCH"
 pacman -S --noconfirm --needed base-devel\
        ${PKG_PREFIX}-json-c \
