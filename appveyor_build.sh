@@ -14,6 +14,9 @@ pacman -S --noconfirm git subversion mingw64/mingw-w64-x86_64-ruby\
 echo ---------------
 # echo %path%
 echo $PATH
+cat >~/.git-credentials <<EOF
+https://$access_token:x-oauth-basic@github.com
+EOF
 echo ---------------
 bash -x get_hugo.sh
 which hugo && /usr/bin/hugo -t hugo-theme-den --baseUrl="https://github.com/lsq/lsq.github.io"
