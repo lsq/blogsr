@@ -40,9 +40,9 @@ on_success:
     - ps: cat "$env:USERPROFILE\.git-credentials"
     - echo "%GIT_USER_EMAIL%"
     - echo "%GIT_USER_NAME%"
-    - echo "$($GIT_USER_NAME)"
+    - echo "$($env:GIT_USER_NAME)"
     - git config --global user.email "%GIT_USER_EMAIL%"
-    - git config --global user.name "$($GIT_USER_NAME)"
+    - git config --global user.name "$($env:GIT_USER_NAME)"
     - ps: cat ~/.gitconfig
     - ps: dir ~/.gitconfig
     - git config -l
