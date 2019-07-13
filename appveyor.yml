@@ -52,11 +52,12 @@ on_success:
 #    - for /d %%p IN (*) do rmdir "%%p" /s /q
 #    - SETLOCAL EnableDelayedExpansion & robocopy "%APPVEYOR_BUILD_FOLDER%\public" "%TEMP%\static-site" /e & IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1))
     - rm -rf *
-    - ls -al *
+    - ls -al .
     - ls "%APPVEYOR_BUILD_FOLDER%\public" 
     - cp -rf "%APPVEYOR_BUILD_FOLDER%\public\*" "%TEMP%\static-site"
-    - ls .
+    - ls -al .
     - git add -A
+    - git config -l
     - git commit -m "Update Static Site"
-    - git push origin %TARGET_BRANCH%
+    - git push -u origin %TARGET_BRANCH%
     - appveyor AddMessage "Static Site Updated"
