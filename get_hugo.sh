@@ -68,13 +68,14 @@ if ! [ $NEW_VERSION = $CUR_VERSION ]; then
     tar -xzf $TARBALL
   fi
   
-  ! [ -e hugo.exe ] && exit 1
+  
   chmod +x hugo.exe 
 
-  if [ -w $BIN_DIR ]; then
+  #if [ -w $BIN_DIR ]; then
     echo "Installing hugo to $BIN_DIR"
     cp hugo.exe -f $BIN_DIR
-  fi
+	! [ -e /usr/bin/hugo.exe ] && exit 1
+  #fi
 
   popd > /dev/null
 

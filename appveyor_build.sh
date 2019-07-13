@@ -12,9 +12,10 @@ pacman -S --noconfirm git subversion mingw64/mingw-w64-x86_64-ruby\
 
 # 
 echo ---------------
-echo %path%
+# echo %path%
+echo $PATH
 echo ---------------
 bash -x get_hugo.sh
 which bash
-hugo -t den --baseUrl="https://github.com/lsq/lsq.github.io"
+/usr/bin/hugo -t den --baseUrl="https://github.com/lsq/lsq.github.io"
 
