@@ -6,7 +6,7 @@ set -exu
 # GITHUB_USER=""
 # GITHUB_TOKEN=""
 
-DEFAULT_BIN_DIR="/usr/local/bin"
+DEFAULT_BIN_DIR="/usr/bin"
 # Single optional argument is directory in which to install hugo
 BIN_DIR=${1:-"$DEFAULT_BIN_DIR"}
 BIN_PATH="$(which hugo)"
@@ -67,15 +67,13 @@ if ! [ $NEW_VERSION = $CUR_VERSION ]; then
     echo Expanding Tarball
     tar -xzf $TARBALL
   fi
-
-  chmod +x hugo
+  
+  ! [ -e hugo.exe ] && exit 1
+  chmod +x hugo.exe 
 
   if [ -w $BIN_DIR ]; then
     echo "Installing hugo to $BIN_DIR"
-    mv hugo -f $BIN_DIR
-  else
-    echo "sudo Installing hugo to $BIN_DIR"
-    mv -f hugo $BIN_DIR
+    cp hugo.exe -f $BIN_DIR
   fi
 
   popd > /dev/null
