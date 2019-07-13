@@ -1,0 +1,108 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
+  <channel>
+    <title>Den</title>
+    <link>https://lsq.github.io/</link>
+    <description>Recent content on Den</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 23 Jun 2019 23:13:01 +0800</lastBuildDate>
+    
+        <atom:link href="https://lsq.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于</title>
+      <link>https://lsq.github.io/about/</link>
+      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
+      
+      <guid>https://lsq.github.io/about/</guid>
+      
+        <description>&lt;p&gt;Hugo 是個靜態網頁產生器。&lt;/p&gt;
+
+&lt;p&gt;它利用了一些開放原始碼的專案像是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/cobra&#34;&gt;Cobra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/viper&#34;&gt;Viper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/jWalterWeatherman&#34;&gt;J Walter Weatherman&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/cast&#34;&gt;Cast&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;了解並貢獻： &lt;a href=&#34;https://github.com/gohugoio&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Note 4</title>
+      <link>https://lsq.github.io/2019/06/23/note-4/</link>
+      <pubDate>Sun, 23 Jun 2019 23:13:01 +0800</pubDate>
+      
+      <guid>https://lsq.github.io/2019/06/23/note-4/</guid>
+      
+        <description>
+
+&lt;h3 id=&#34;this-is-a-demo-test&#34;&gt;This is a demo test&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-vbs&#34; data-lang=&#34;vbs&#34;&gt;Dim as arr as Integer, brr as String&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面语句用来定议变量&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Note 3</title>
+      <link>https://lsq.github.io/2019/06/20/note-3/</link>
+      <pubDate>Thu, 20 Jun 2019 21:34:52 +0800</pubDate>
+      
+      <guid>https://lsq.github.io/2019/06/20/note-3/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;这是第三个笔记&#34;&gt;这是第三个笔记&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-vbscript&#34; data-lang=&#34;vbscript&#34;&gt;dim arr as Integer, b as String
+dim sty as Object&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>標頭圖片</title>
+      <link>https://lsq.github.io/2018/03/05/%E6%A8%99%E9%A0%AD%E5%9C%96%E7%89%87/</link>
+      <pubDate>Mon, 05 Mar 2018 16:01:23 +0800</pubDate>
+      
+      <guid>https://lsq.github.io/2018/03/05/%E6%A8%99%E9%A0%AD%E5%9C%96%E7%89%87/</guid>
+      
+        <description>&lt;p&gt;這是一個簡單的筆記。&lt;/p&gt;
+
+&lt;p&gt;​&lt;/p&gt;
+
+&lt;p&gt;​&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>筆記 2</title>
+      <link>https://lsq.github.io/2018/03/04/%E7%AD%86%E8%A8%98-2/</link>
+      <pubDate>Sun, 04 Mar 2018 16:01:23 +0800</pubDate>
+      
+      <guid>https://lsq.github.io/2018/03/04/%E7%AD%86%E8%A8%98-2/</guid>
+      
+        <description>&lt;p&gt;這是一個簡單的筆記。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>筆記 1</title>
+      <link>https://lsq.github.io/2018/03/03/%E7%AD%86%E8%A8%98-1/</link>
+      <pubDate>Sat, 03 Mar 2018 16:01:23 +0800</pubDate>
+      
+      <guid>https://lsq.github.io/2018/03/03/%E7%AD%86%E8%A8%98-1/</guid>
+      
+        <description>&lt;p&gt;這是一個簡單的筆記。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+  </channel>
+</rss>
