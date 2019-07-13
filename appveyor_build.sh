@@ -16,6 +16,5 @@ echo ---------------
 echo $PATH
 echo ---------------
 bash -x get_hugo.sh
-which bash
-/usr/bin/hugo -t hugo-theme-den --baseUrl="https://github.com/lsq/lsq.github.io"
+which hugo && /usr/bin/hugo -t hugo-theme-den --baseUrl="https://github.com/lsq/lsq.github.io"
 
