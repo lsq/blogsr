@@ -1,11 +1,12 @@
 #!/bin/bash
+set -exu
 # Version 0.1.0  8:26 PST, Nov 9, 2018
 # see https://discourse.gohugo.io/t/script-to-install-latest-hugo-release-on-macos-and-ubuntu/14774/10
 # if you have run into github api anonymous access limits then add user and token here or in environment
 # GITHUB_USER=""
 # GITHUB_TOKEN=""
 
-DEFAULT_BIN_DIR="/usr/local/bin"
+DEFAULT_BIN_DIR="/usr/bin"
 # Single optional argument is directory in which to install hugo
 BIN_DIR=${1:-"$DEFAULT_BIN_DIR"}
 BIN_PATH="$(which hugo)"
@@ -66,15 +67,13 @@ if ! [ $NEW_VERSION = $CUR_VERSION ]; then
     echo Expanding Tarball
     tar -xzf $TARBALL
   fi
-
-  chmod +x hugo.exe
+  
+  ! [ -e hugo.exe ] && exit 1
+  chmod +x hugo.exe 
 
   if [ -w $BIN_DIR ]; then
     echo "Installing hugo to $BIN_DIR"
     mv hugo -f $BIN_DIR
-  else
-    echo "sudo Installing hugo to $BIN_DIR"
-    mv -f hugo $BIN_DIR
   fi
 
   popd > /dev/null
