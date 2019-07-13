@@ -32,24 +32,27 @@ artifacts:
   - path: public
 
 on_success:
-    - which git
-    - which hugo
+# https://cygwin.com/cygwin-ug-net/cygpath.html
+    - which git | cygpath -w -f -
+    - which hugo | cygpath -w -f -
     - git config --global credential.helper store
-    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
-    - ps: dir "$env:USERPROFILE\.git-credentials"
-    - ps: cat "$env:USERPROFILE\.git-credentials"
-    - echo ------------
-    - ls -al ~/
+    - echo %access_token%
+#    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+#    - ps: dir "$env:USERPROFILE\.git-credentials"
+#    - ps: cat "$env:USERPROFILE\.git-credentials"
+#    - echo ------------
+#    - ls -al ~/
     - cygpath -w /home
-    - cat ~/.git-credentials
+#    - cat ~/.git-credentials
+#    - cp 
     - echo "%GIT_USER_EMAIL%"
     - echo "%GIT_USER_NAME%"
-    - echo "$($env:GIT_USER_NAME)"
+#    - echo "$($env:GIT_USER_NAME)"
     - git config --global user.email "%GIT_USER_EMAIL%"
     - git config --global user.name "%GIT_USER_NAME%"
-    - ps: cat ~/.gitconfig
-    - ps: dir ~/.gitconfig
-    - git config -l
+#    - ps: cat ~/.gitconfig
+#    - ps: dir ~/.gitconfig
+#    - git config -l
     - git clone --depth 5 -q --branch=%TARGET_BRANCH% %STATIC_SITE_REPO% %TEMP%\static-site
     - cd %TEMP%\static-site
     - ls -al .
@@ -57,15 +60,16 @@ on_success:
 #    - for /d %%p IN (*) do rmdir "%%p" /s /q
 #    - SETLOCAL EnableDelayedExpansion & robocopy "%APPVEYOR_BUILD_FOLDER%\public" "%TEMP%\static-site" /e & IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1))
     - rm -rf *
-    - ls -al .
+#    - ls -al .
     - ls "%APPVEYOR_BUILD_FOLDER%\public" 
-    - SETLOCAL EnableDelayedExpansion & robocopy "%APPVEYOR_BUILD_FOLDER%\public" "%TEMP%\static-site" /e & IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1))
+    - cp %APPVEYOR_BUILD_FOLDER%/public/* %TEMP%/static-site
+#    - SETLOCAL EnableDelayedExpansion & robocopy "%APPVEYOR_BUILD_FOLDER%\public" "%TEMP%\static-site" /e & IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1))
 #    - cp -rf "%APPVEYOR_BUILD_FOLDER%\public\*" "%TEMP%\static-site"
     - ls -al .
-    - pwd
+#    - pwd
     - git add -A
-    - git config -l
+#    - git config -l
     - git commit -m "Update Static Site"
-    - echo %TARGET_BRANCH%
+#    - echo %TARGET_BRANCH%
     - git push -u origin %TARGET_BRANCH%
     - appveyor AddMessage "Static Site Updated"
