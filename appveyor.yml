@@ -40,8 +40,8 @@ on_success:
     - ps: cat "$env:USERPROFILE\.git-credentials"
     - git config --global user.email "%GIT_USER_EMAIL%"
     - git config --global user.name "%GIT_USER_NAME%"
-    - ps: cat .gitconfig
-    - ps: dir .gitconfig
+    - ps: cat ~/.gitconfig
+    - ps: dir ~/.gitconfig
     - git clone --depth 5 -q --branch=%TARGET_BRANCH% %STATIC_SITE_REPO% %TEMP%\static-site
     - cd %TEMP%\static-site
 #    - del * /f /q
