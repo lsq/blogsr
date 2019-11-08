@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 grep "nothing to commit" <(git status) && exit 0
 pwd
 git status
