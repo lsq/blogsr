@@ -1,0 +1,10 @@
+[[series]]
+name = "Setting up and configuring a mail server"
+img = "http://heijing.chuangzaoshi.com/wp-content/uploads/2017/07/2.png"
+desc = "Setting up and configuring a mail server is a challenging process"
+
+[[series]]
+name = "Install LAMP Stack on CentOS 7"
+img = "http://heijing.chuangzaoshi.com/wp-content/uploads/2017/07/17.png"
+desc = "The term LAMP is an acronym of the names of its four open-source components:"
+
