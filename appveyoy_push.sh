@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-[ git status | grep "nothing to commit" ] && exit 0
+grep "nothing to commit" <(git status) && exit 0
 pwd
 git add -A
 git config -l
