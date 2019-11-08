@@ -1,6 +1,6 @@
 [submodule "themes/hugo-theme-den"]
 	path = themes/hugo-theme-den
-	url = https://github.com/lsq/hugo-theme-den
+	url = git@github.com:lsq/hugo-theme-den.git
 [submodule "themes/hugo-one"]
 	path = themes/hugo-one
 	url = git@github.com:lsq/hugo-one.git
