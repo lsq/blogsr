@@ -25,7 +25,7 @@ init:
   # - bash -lc "/usr/bin/env pacman --noconfirm -Syu"
 
 # Fetch dependencies, build and run tests
-clone_script:
+#clone_script:
   - ls -al .
   - pwd
     #  - cmd: git clone --recursive  --branch=master https://github.com/lsq/blogsr.git C:\projects\blogsr
