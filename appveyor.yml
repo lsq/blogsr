@@ -28,8 +28,8 @@ init:
 build_script:
   - echo %path%
   - ls -al .
-  - ls -al theme
-  - ls -al theme/hugo-one
+  - ls -al themes
+  - ls -al themes/hugo-one
   - bash '%APPVEYOR_BUILD_FOLDER%\appveyor_build.sh'
 artifacts:
   - path: public
