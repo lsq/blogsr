@@ -21,5 +21,6 @@ EOF
 echo ---------------
 bash -x get_hugo.sh
 # which hugo && /usr/bin/hugo -t hugo-theme-den --baseUrl="https://github.com/lsq/lsq.github.io"
-which hugo && /usr/bin/hugo  --baseUrl="https://github.com/lsq/lsq.github.io"
+eval sed -n '/theme/s/ //gp' config.toml
+which hugo && /usr/bin/hugo -t $theme  --baseUrl="https://github.com/lsq/lsq.github.io"
 
