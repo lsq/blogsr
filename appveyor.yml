@@ -46,11 +46,13 @@ install:
 
   - git submodule update --init --recursive 
   - cd themes/hugo-one 
+  - ls -al .
   - git config -l
   - cd ../hugo-theme-den 
+  - ls -al .
   - git config -l 
   - cd ../../
-  - git submodule foreach git pull
+  - git submodule foreach "(git checkout master; git pull; git submodule foreach git pull)"
 
 build_script:
   - echo %path%
