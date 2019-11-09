@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-set -x
+set -xe
 grep "nothing to commit" <(git status) && exit 0
 pwd
 git status
 git add -A
-git config -l
+git status
+#git config -l
 git commit -m "Update Static Site"
-env
-declare
+#env
+#declare
 echo $TARGET_BRANCH
 git push -u origin $TARGET_BRANCH
