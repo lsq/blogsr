@@ -54,6 +54,8 @@ install:
   - cd ../../
   - git submodule foreach "(git checkout master; git pull; git submodule foreach '(git checkout master ; git pull)')"
   - git status
+  - cat .git/HEAD
+  - git branch -v
 
 build_script:
   - echo %path%
