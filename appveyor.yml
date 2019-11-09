@@ -1,5 +1,5 @@
 version: 1.0.{build}
-# image: Visual Studio 2017
+image: Visual Studio 2017
 environment:
   STATIC_SITE_REPO:
     secure: +u0A9TohuPL+e66QhZANB9exCjdcxe9XUhdnFu5ojtybR3jsgXM000IZqmCHHryG
@@ -26,8 +26,13 @@ init:
 
 # Fetch dependencies, build and run tests
 #clone_script:
+  - bash -x appveyor_prepare.sh
   - ls -al .
   - pwd
+  - set
+  - git config --global credential.helper store
+  - git config --global user.email "%GIT_USER_EMAIL%"
+  - git config --global user.name "%GIT_USER_NAME%"
   - git config -l 
   - git config --global -l
     #  - cmd: git clone --recursive  --branch=master https://github.com/lsq/blogsr.git C:\projects\blogsr
@@ -52,7 +57,7 @@ on_success:
     - which git | cygpath -w -f -
     - which hugo | cygpath -w -f -
     # bash -c "cp `which git | cygpath -w -f - | cygpath -u -f -` ."
-    - git config --global credential.helper store
+    #    - git config --global credential.helper store
 #    - echo %access_token%
 #    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
 #    - ps: dir "$env:USERPROFILE\.git-credentials"
@@ -65,8 +70,8 @@ on_success:
 #    - echo "%GIT_USER_EMAIL%"
 #    - echo "%GIT_USER_NAME%"
 #    - echo "$($env:GIT_USER_NAME)"
-    - git config --global user.email "%GIT_USER_EMAIL%"
-    - git config --global user.name "%GIT_USER_NAME%"
+#    - git config --global user.email "%GIT_USER_EMAIL%"
+#    - git config --global user.name "%GIT_USER_NAME%"
 #    - ps: cat ~/.gitconfig
 #    - ps: dir ~/.gitconfig
 #    - git config -l
