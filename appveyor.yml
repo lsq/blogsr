@@ -45,6 +45,11 @@ install:
     #  - cmd: git clone --recursive  --branch=master https://github.com/lsq/blogsr.git C:\projects\blogsr
 
   - git submodule update --init --recursive 
+  - cd themes/hugo-one 
+  - git config -l
+  - cd ../hugo-theme-den 
+  - git config -l 
+  - cd ../../
   - git submodule foreach git pull
 
 build_script:
