@@ -19,3 +19,4 @@ function get_release(){
 }
 [[ -n $(get_latest_release $1) ]] && echo "latest release is: $(get_latest_release $1)"
 get_release $1 $2
+cp -f $2 src/

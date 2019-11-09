@@ -27,3 +27,4 @@ EOF
 echo ---------------
 bash -x get_hugo.sh
 # which hugo && /usr/bin/hugo -t hugo-theme-den --baseUrl="https://github.com/lsq/lsq.github.io"
+bash -x get_latest.sh 2dust/v2rayNG v2rayNG_1.1.9_arm64-v8a.apk
