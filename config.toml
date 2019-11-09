@@ -1,4 +1,4 @@
-baseURL = "http://often9.com"
+baseURL = "https://github.com/lsq/lsq.github.io"
 languageCode = "en"
 DefaultContentLanguage = "zh"
 title = "Hugo blog"
