@@ -31,7 +31,7 @@ init:
 install:
   - ls -al .
   - pwd
-  - which set
+    #  - which set
   - set
   - bash -x appveyor_prepare.sh
   - which git
