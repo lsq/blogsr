@@ -56,6 +56,8 @@ install:
   - git status
   - cat .git/HEAD
   - git branch -v
+  - git checkout master
+  - cat .git/HEAD
 
 build_script:
   - echo %path%
