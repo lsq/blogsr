@@ -28,12 +28,15 @@ init:
 #clone_script:
   - ls -al .
   - pwd
+  - git config -l 
+  - git config --global -l
     #  - cmd: git clone --recursive  --branch=master https://github.com/lsq/blogsr.git C:\projects\blogsr
 
 install:
   - pwd
   - ls -al .
-  - git submodule update --init
+  - git submodule update --init --recursive 
+  - git submodule foreach git pull
 
 build_script:
   - echo %path%
