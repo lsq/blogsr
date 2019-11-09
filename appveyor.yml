@@ -31,13 +31,17 @@ init:
 install:
   - ls -al .
   - pwd
+  - which set
   - set
   - bash -x appveyor_prepare.sh
+  - which git
+  - set
   - git config --global credential.helper store
   - git config --global user.email "%GIT_USER_EMAIL%"
   - git config --global user.name "%GIT_USER_NAME%"
   - git config -l 
   - git config --global -l
+  - cat ~/.git-credentials
     #  - cmd: git clone --recursive  --branch=master https://github.com/lsq/blogsr.git C:\projects\blogsr
 
   - git submodule update --init --recursive 
