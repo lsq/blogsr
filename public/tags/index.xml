@@ -1,40 +1,94 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Den</title>
-    <link>https://lsq.github.io/tags/</link>
-    <description>Recent content in Tags on Den</description>
+    <title>Tags on Hugo blog</title>
+    <link>http://often9.com/tags/</link>
+    <description>Recent content in Tags on Hugo blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
+    <language>en</language>
     <lastBuildDate>Sun, 23 Jun 2019 23:13:01 +0800</lastBuildDate>
     
-	<atom:link href="https://lsq.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://often9.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>“js&#34;</title>
-      <link>https://lsq.github.io/tag/js/</link>
+      <link>http://often9.com/tags/js/</link>
       <pubDate>Sun, 23 Jun 2019 23:13:01 +0800</pubDate>
       
-      <guid>https://lsq.github.io/tag/js/</guid>
+      <guid>http://often9.com/tags/js/</guid>
       <description></description>
     </item>
     
     <item>
       <title>notes</title>
-      <link>https://lsq.github.io/tag/notes/</link>
+      <link>http://often9.com/tags/notes/</link>
       <pubDate>Thu, 20 Jun 2019 21:34:52 +0800</pubDate>
       
-      <guid>https://lsq.github.io/tag/notes/</guid>
+      <guid>http://often9.com/tags/notes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>images</title>
-      <link>https://lsq.github.io/tag/images/</link>
+      <link>http://often9.com/tags/images/</link>
       <pubDate>Mon, 05 Mar 2018 16:01:23 +0800</pubDate>
       
-      <guid>https://lsq.github.io/tag/images/</guid>
+      <guid>http://often9.com/tags/images/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>development</title>
+      <link>http://often9.com/tags/development/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://often9.com/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>http://often9.com/tags/go/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://often9.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>http://often9.com/tags/golang/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://often9.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>http://often9.com/tags/hugo/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://often9.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>templates</title>
+      <link>http://often9.com/tags/templates/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://often9.com/tags/templates/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>themes</title>
+      <link>http://often9.com/tags/themes/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://often9.com/tags/themes/</guid>
       <description></description>
     </item>
     
