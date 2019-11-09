@@ -28,7 +28,7 @@ init:
 clone_script:
   - ls -al .
   - pwd
-  - cmd: git clone --recursive  --branch=master https://github.com/lsq/blogsr.git C:\projects\blogsr
+    #  - cmd: git clone --recursive  --branch=master https://github.com/lsq/blogsr.git C:\projects\blogsr
 
 install:
   - pwd
