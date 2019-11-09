@@ -33,7 +33,7 @@ init:
 install:
   - pwd
   - ls -al .
-  - sh: git submodule update --init
+  - git submodule update --init
 
 build_script:
   - echo %path%
