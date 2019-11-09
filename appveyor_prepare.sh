@@ -14,9 +14,11 @@ pacman -S --noconfirm git subversion mingw64/mingw-w64-x86_64-ruby\
 # 
 echo ---------------
 # echo %path%
-which set
+#which set
+echo -----set-------
 set 
-which env
+#which env
+echo ++++++env++++++
 env
 echo $PATH
 cat >~/.git-credentials <<EOF
