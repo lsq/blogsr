@@ -53,6 +53,7 @@ install:
   - git config -l 
   - cd ../../
   - git submodule foreach "(git checkout master; git pull; git submodule foreach '(git checkout master ; git pull)')"
+  - git status
 
 build_script:
   - echo %path%
