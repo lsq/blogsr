@@ -1,13 +1,16 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 environment:
-  STATIC_SITE_REPO: https://github.com/liluoao/liluoao.github.io
-  TARGET_BRANCH: master
-  GIT_USER_EMAIL: liluoao@qq.com
-  GIT_USER_NAME: liluoao
+  STATIC_SITE_REPO:
+    secure: +u0A9TohuPL+e66QhZANB9exCjdcxe9XUhdnFu5ojtybR3jsgXM000IZqmCHHryG
+  TARGET_BRANCH:
+    secure: eQBPkReZ/mmjzNZaccrD3w==
+  GIT_USER_EMAIL:
+    secure: kM3mIK9xSLBAoq/mJ+oaO3KR0dvIrC0EcsfjrwmtacU=
+  GIT_USER_NAME:
+    secure: wX822g4t5xXPI86jW/Oy7g==
   access_token:
-    #secure: 855kciMXrCGEcKW+P87C5nMrvYN47FH/Zjz9yHjZ53yeijLyb6/0oZ4CVv7j0VbE
-    secure: 5vJ1CpsxlHQGN25gOlFMMQwlEoIOHaMrRTpR3udrSsU
+    secure: zt43vh97KFrDRrWr0I4KT435t2Qkqckh33yDFzyMUoLd2hn9eEHawvevds5jFj0/
   matrix:
     - MSYS2_ARCH: x86_64
       MSYSTEM: MINGW64
@@ -28,17 +31,17 @@ init:
 install:
   - ls -al .
   - pwd
-    #  - which set
   - set
+    #  - which set
+    # - set
   - bash -x appveyor_prepare.sh
   - which git
-    #- set
   - git config --global credential.helper store
   - git config --global user.email "%GIT_USER_EMAIL%"
   - git config --global user.name "%GIT_USER_NAME%"
     #- git config -l 
     # - git config --global -l
-  - cat ~/.git-credentials
+    #- cat ~/.git-credentials
     #  - cmd: git clone --recursive  --branch=master https://github.com/lsq/blogsr.git C:\projects\blogsr
 
   - git checkout master
