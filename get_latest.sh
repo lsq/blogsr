@@ -29,12 +29,14 @@ cp -rf $1 content/posts/downloaded.md
 sed -i '1i\
 ---\
 title: "Downloaded file list"\
-'"$(date)"'\
+date: '"$(date)"'\
 description: "jugg"\
 draft: false\
 tags: ["ls"]\
 categories: ["demos"]\
 ---\
+\
+\
 '"# [$APPVEYOR_REPO_COMMIT](https://ci.appveyor.com/project/lsq/blogsr/builds/$APPVEYOR_BUILD_ID)"'\
 ' content/posts/downloaded.md
 sed -i 's/$/\n/' content/posts/downloaded.md
