@@ -36,3 +36,4 @@ tags: ["ls"]\
 categories: ["demos"]\
 ---\
 ' content/posts/downloaded.md
+sed -i 's/$/\n/' content/posts/downloaded.md
