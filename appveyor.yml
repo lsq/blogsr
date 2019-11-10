@@ -11,7 +11,8 @@ environment:
     secure: wX822g4t5xXPI86jW/Oy7g==
   access_token:
     #secure: zt43vh97KFrDRrWr0I4KT435t2Qkqckh33yDFzyMUoLd2hn9eEHawvevds5jFj0/
-    secure: zt43vh97KFrDRrWr0I4KT435t2Qkqckh33yDFzyMUoJcWY0p+nJiLbt+b4egl34n
+    #secure: zt43vh97KFrDRrWr0I4KT435t2Qkqckh33yDFzyMUoJcWY0p+nJiLbt+b4egl34n
+    secure: 855kciMXrCGEcKW+P87C5nMrvYN47FH/Zjz9yHjZ53yeijLyb6/0oZ4CVv7j0VbE
   matrix:
     - MSYS2_ARCH: x86_64
       MSYSTEM: MINGW64
