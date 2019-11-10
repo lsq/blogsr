@@ -26,3 +26,14 @@ while read -r line; do
   [ $? -eq 0 ] && mv -f "$dl_filename" "$APPVEYOR_JOB_ID/$repo_name-$dl_filename" && sed -i '/'"$dl_filename"'/s/^/###dl /' $1
 done <$1
 cp -rf $1 content/posts/downloaded.md
+sed -i '
+1i \
+---
+title: "Note 4"
+date: 2019-06-23T23:13:01+08:00
+description: "jugg"
+draft: false
+tags: ["ls"]
+categories: ["demos"]
+---
+' content/posts/downloaded.md
