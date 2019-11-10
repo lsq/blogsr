@@ -21,7 +21,8 @@ function get_release(){
 while read -r line; do 
   user_repo=$(echo "$line" | gawk '/^([[:space:]]*)[^ #]/ {print $1}')
   dl_filename=$(echo "$line" | gawk '/^([[:space:]]*)[^ #]/ {print $2}')
+  [[ -n $user_repo && -n $dl_filename ]] && local repo_name=$(echo $user_repo | gawk -F'/' '{print $2}')
   [[ -n $user_repo && -n $dl_filename ]] && get_release "$user_repo" "$dl_filename"
-  [ $? -eq 0 ] && mv -f "$dl_filename" $APPVEYOR_JOB_ID/ && sed -i '/'"$dl_filename"'/s/^/###dl /' $1
+  [ $? -eq 0 ] && mv -f "$dl_filename" "$APPVEYOR_JOB_ID/$repo_name-$dl_filename" && sed -i '/'"$dl_filename"'/s/^/###dl /' $1
 done <$1
 cp -rf $1 content/posts/downloaded.md
