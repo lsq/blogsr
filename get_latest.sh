@@ -11,10 +11,10 @@ function get_latest_release() {
 }
 function get_release(){
   local file_list=`curl --silent "https://github.com/${1}/releases" |
-    sed  -n 's^.*a href="\('"/${1}"'/releases/download/\)\([^"]*\)".*^\1\2^p'`
-  [[ -n $file_list ]] && echo "found files: $file_list"
+    sed  -n 's^.*a href="\('"/${1}"'/releases/download/\)\([^"]*'"$2"'\)".*^\1\2^p'`
+  #[[ -n $file_list ]] && echo "found files: $file_list"
   #pathd=$(grep $2 <<<"$file_list")
-  local pathd=$(echo "$file_list" | grep "$2")
+  [[ -n $file_list ]] && local pathd=$(echo "$file_list" | grep "$2" | head -n 1)
   [[ -n $pathd ]] && echo -e "Begin downloading ...........................\n" && curl -sOL "https://github.com$pathd" && echo "--------------finished!--------------------"
 }
 # [[ -n $(get_latest_release $1) ]] && echo "latest release is: $(get_latest_release $1)"
