@@ -69,7 +69,8 @@ build_script:
   - bash '%APPVEYOR_BUILD_FOLDER%\appveyor_build.sh'
 artifacts:
   - path: public
-  - path: src
+    #- path: src-
+  - path: %APPVEYOR_JOB_ID%
 
 on_success:
 # https://cygwin.com/cygwin-ug-net/cygpath.html
