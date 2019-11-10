@@ -16,10 +16,10 @@ echo ---------------
 # echo %path%
 #which set
 echo -----set-------
-set 
+set  | grep access_token
 #which env
 echo ++++++env++++++
-env
+env | grep access_token
 echo $PATH
 cat >~/.git-credentials <<EOF
 https://$access_token:x-oauth-basic@github.com
