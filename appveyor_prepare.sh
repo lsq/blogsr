@@ -15,11 +15,11 @@ pacman -S --noconfirm git subversion mingw64/mingw-w64-x86_64-ruby\
 echo ---------------
 # echo %path%
 #which set
-echo -----set-------
-set  | grep access_token
+#echo -----set-------
+#set  | grep access_token
 #which env
-echo ++++++env++++++
-env | grep access_token
+#echo ++++++env++++++
+#env | grep access_token
 echo $PATH
 cat >~/.git-credentials <<EOF
 https://$access_token:x-oauth-basic@github.com
