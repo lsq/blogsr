@@ -37,6 +37,7 @@ categories: ["demos"]\
 ---\
 \
 \
-'"# [$APPVEYOR_REPO_COMMIT](https://ci.appveyor.com/project/lsq/blogsr/builds/$APPVEYOR_BUILD_ID)"'\
+# commit id\
+'"## [$APPVEYOR_REPO_COMMIT](https://ci.appveyor.com/project/lsq/blogsr/builds/$APPVEYOR_BUILD_ID)"'\
 ' content/posts/downloaded.md
 sed -i 's/$/\n/' content/posts/downloaded.md
