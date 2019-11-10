@@ -7,7 +7,6 @@ environment:
   GIT_USER_NAME: liluoao
   access_token:
     secure: 855kciMXrCGEcKW+P87C5nMrvYN47FH/Zjz9yHjZ53yeijLyb6/0oZ4CVv7j0VbE
-install:
   matrix:
     - MSYS2_ARCH: x86_64
       MSYSTEM: MINGW64
