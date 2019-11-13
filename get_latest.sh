@@ -152,9 +152,9 @@ categories: ["demos"]\
 \
 '"## Download [$APPVEYOR_JOB_ID](https://ci.appveyor.com/api/buildjobs/$APPVEYOR_JOB_ID/artifacts/$APPVEYOR_JOB_ID.zip)"'\
 ' "$2"
-sed -i 's/$/\n/
+sed -i '## s/$/\n/
  /This file contains/,${
- /^$/!{
+ /^$|This file contains/!{
   /\(### \+update\| \+- \+dl \+\)/! d
 }
 }
