@@ -53,7 +53,10 @@ function update_download_list(){
   #get_download_list | xargs -I {} sed -r -i 's/^()'"{}"
   local dllist=$(get_download_list "$1")
   while read -ra flist;do
-  [[ ${#flist[@]} < 2 || ${flist[0]} =~ ^# || ${flist[1]} =~ ^# ]] && continue
+  [[ ${#flist[@]} < 1 || ${flist[0]} =~ ^# ]] && continue
+  [[ ${#flist[@]} = 1 && ! ${flist[0]} =~ ^\(http\|ftp\) ]] && continue
+  [[ ${#flist[@]} >= 2 && ! ${flist[0]} =~ ^\(http\|ftp\) && ${flist[1]} =~ ^# ]] && continue
+  [[ ${#flist[@]} = 1 ]] &&  flist=(${flist[@]} "#")
 
   : <<'COMMENTBLOCK'
   sed  -r '/'"${flist[0]}"' +'"${flist[1]}"'/{
@@ -110,7 +113,20 @@ function download_file(){
 while read -ra line; do
   #declare -a
   #printf "+ %s\n" "${line[*]}"
-  [[ ${#line[@]} < 2 || ${line[0]} =~ ^# ]] && continue
+  [[ ${#line[@]} < 1 || ${line[0]} =~ ^# ]] && continue
+  if [[ ${line[@]} && ${line[0]} =~ ^\(http\|ftp\) ]]; then
+    user_repo=`: ${line[0]#*//};echo ${_%%/*}` 
+    repo_name="$us"
+    [[ ${#line[@]} -eq 1 ]] || [[ ${#line[@]} -ge 2 && ${line[1]} = "#" ]] &&
+      dl_filename=`${line[0]##*/}`
+    [[ ${#line[@]} -eq 2 && ! ${line[1]} =~ ^#$ ]] &&
+      dl_filename=`${line[1]#\#}`
+    [[ $user_repo && $dl_filename ]] &&
+      curl -sL -o "$dl_filename" ${line[0]}
+    [ $? -eq 0 ] && mv -f "$dl_filename" "$APPVEYOR_JOB_ID/$user_repo-$dl_filename" &&
+    sed -i '\|^ *'"${line[0]}"'|s/^/  - dl /' $1
+  else
+  [[ ${#line[@]} < 2 || ${line[1]} =~ ^# ]] && continue
   user_repo="${line[0]}"
   dl_filename="${line[1]}"
   repo_name=$(gawk -F'/' '{print $2}' <<<"$user_repo")
@@ -119,6 +135,7 @@ while read -ra line; do
     get_release "$user_repo" "$dl_filename"
   [ $? -eq 0 ] && mv -f "$dl_filename" "$APPVEYOR_JOB_ID/$repo_name-$dl_filename" &&
     sed -i '\|^ *'"$user_repo"' \+'"$dl_filename"'|s/^/  - dl /' $1
+  fi
 #COMMENTBLOCK
 done <"$1"
 }
