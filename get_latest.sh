@@ -55,7 +55,7 @@ function update_download_list(){
   while read -ra flist;do
   [[ ${#flist[@]} < 1 || ${flist[0]} =~ ^# ]] && continue
   [[ ${#flist[@]} = 1 && ! ${flist[0]} =~ ^\(http\|ftp\) ]] && continue
-  [[ ${#flist[@]} >= 2  && ! ${flist[0]} =~ ^\(http\|ftp\) ]] && [[ ${flist[1]} =~ ^# ]] && continue
+  [[ ${#flist[@]} -ge 2  && ! ${flist[0]} =~ ^\(http\|ftp\)  &&  ${flist[1]} =~ ^# ]] && continue
   [[ ${#flist[@]} = 1 ]] &&  flist=(${flist[@]} "#")
 
   : <<'COMMENTBLOCK'
