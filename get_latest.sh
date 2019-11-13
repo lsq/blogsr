@@ -54,8 +54,8 @@ function update_download_list(){
   local dllist=$(get_download_list "$1")
   while read -ra flist;do
   [[ ${#flist[@]} < 1 || ${flist[0]} =~ ^# ]] && continue
-  [[ ${#flist[@]} = 1 && ! ${flist[0]} =~ ^\(http\|ftp\) ]] && continue
-  [[ ${#flist[@]} -ge 2  && ! ${flist[0]} =~ ^\(http\|ftp\)  &&  ${flist[1]} =~ ^# ]] && continue
+  [[ ${#flist[@]} = 1 && ! ${flist[0]} =~ ^(http|ftp) ]] && continue
+  [[ ${#flist[@]} -ge 2  && ! ${flist[0]} =~ ^(http|ftp)  &&  ${flist[1]} =~ ^# ]] && continue
   [[ ${#flist[@]} = 1 ]] &&  flist=(${flist[@]} "#")
 
   : <<'COMMENTBLOCK'
@@ -114,7 +114,7 @@ while read -ra line; do
   #declare -a
   #printf "+ %s\n" "${line[*]}"
   [[ ${#line[@]} < 1 || ${line[0]} =~ ^# ]] && continue
-  if [[ ${line[@]} && ${line[0]} =~ ^\(http\|ftp\) ]]; then
+  if [[ ${line[@]} && ${line[0]} =~ ^(http|ftp) ]]; then
     user_repo=`: ${line[0]#*//};echo ${_%%/*}` 
     repo_name="$us"
     [[ ${#line[@]} -eq 1 ]] || [[ ${#line[@]} -ge 2 && ${line[1]} = "#" ]] &&
