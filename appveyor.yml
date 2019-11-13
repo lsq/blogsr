@@ -36,7 +36,6 @@ install:
     #- set
     #  - which set
     # - set
-  - bash -x appveyor_prepare.sh
   - which git
   - git config --global credential.helper store
   - git config --global user.email "%GIT_USER_EMAIL%"
@@ -62,6 +61,7 @@ install:
   - git branch -v
   - git checkout master
   - cat .git/HEAD
+  - bash -x appveyor_prepare.sh
 
 build_script:
   - echo %path%
