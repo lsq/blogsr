@@ -62,6 +62,7 @@ install:
   - git checkout master
   - cat .git/HEAD
   - bash -x appveyor_prepare.sh
+  - df -h
 
 build_script:
   - echo %path%

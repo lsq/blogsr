@@ -51,6 +51,7 @@ function get_download_list() {
 }
 function update_download_list(){
   #get_download_list | xargs -I {} sed -r -i 's/^()'"{}"
+  local flist
   local dllist=$(get_download_list "$1")
   while read -ra flist;do
   [[ ${#flist[@]} < 1 || ${flist[0]} =~ ^# ]] && continue
@@ -110,13 +111,16 @@ sed  -i '1b add
 }
 
 function download_file(){
+  local user_repo
+  local dl_filename
+  local repo_name
+  local line
 while read -ra line; do
   #declare -a
   #printf "+ %s\n" "${line[*]}"
   [[ ${#line[@]} < 1 || ${line[0]} =~ ^# ]] && continue
   if [[ ${line[@]} && ${line[0]} =~ ^(http|ftp) ]]; then
     user_repo=`: ${line[0]#*//};echo ${_%%/*}` 
-    repo_name="$us"
     [[ ${#line[@]} -eq 1 ]] || [[ ${#line[@]} -ge 2 && ${line[1]} = "#" ]] &&
       dl_filename=`${line[0]##*/}`
     [[ ${#line[@]} -eq 2 && ! ${line[1]} =~ ^#$ ]] &&
