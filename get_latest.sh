@@ -135,6 +135,8 @@ done <$1
 COMMENTBLOCK
 
 function gen_log(){
+cat "$2"
+cat "$1"
 cp -rf "$1" "$2"
 sed -i '1i\
 ---\
@@ -164,6 +166,5 @@ sed -i '## s/$/\n/
 url="https://github.com/lsq/blogsr/issues/1"
 update_download_list $url "$1"
 download_file "$1" 
-cat "$2"
 gen_log "$1" "$2"
 cat "$2"

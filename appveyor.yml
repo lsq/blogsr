@@ -68,7 +68,8 @@ build_script:
   - ls -al .
   - ls -al themes
   - ls -al themes/hugo-one
-  - bash '%APPVEYOR_BUILD_FOLDER%\appveyor_build.sh'
+  - git status
+  - bash -x '%APPVEYOR_BUILD_FOLDER%\appveyor_build.sh'
 artifacts:
   - path: public
     #- path: src-
