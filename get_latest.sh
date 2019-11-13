@@ -94,7 +94,7 @@ sed  -i '1b add
   b
   : end
   x
-  \|^[[:space:]]*$|! {s/^/'"\n### update at: $(date)\n"'/
+  \|^[[:space:]]*$|! {s/^/'"\n### update at: $(TZ='Asia/Shanghai' date)\n"'/
   H
   } 
   x
@@ -139,7 +139,7 @@ cp -rf "$1" "$2"
 sed -i '1i\
 ---\
 title: "Downloaded file list"\
-date: '"$(date)"'\
+date: '"$(TZ='Asia/Shanghai' date)"'\
 description: "jugg"\
 draft: false\
 tags: ["ls"]\
