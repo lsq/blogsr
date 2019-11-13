@@ -135,13 +135,11 @@ done <$1
 COMMENTBLOCK
 
 function gen_log(){
-cat "$2"
-cat "$1"
 cp -rf "$1" "$2"
 sed -i '1i\
 ---\
 title: "Downloaded file list"\
-date: '"$(TZ='Asia/Shanghai' date)"'\
+date: '"$(TZ='Asia/Shanghai' date -R)"'\
 description: "jugg"\
 draft: false\
 tags: ["ls"]\
@@ -156,7 +154,7 @@ categories: ["demos"]\
 ' "$2"
 sed -i '## s/$/\n/
  /This file contains/,${
- /^$|This file contains/!{
+ /^$\|This file contains/!{
   /\(### \+update\| \+- \+dl \+\)/! d
 }
 }
@@ -167,4 +165,3 @@ url="https://github.com/lsq/blogsr/issues/1"
 update_download_list $url "$1"
 download_file "$1" 
 gen_log "$1" "$2"
-cat "$2"
