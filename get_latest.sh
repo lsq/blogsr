@@ -94,7 +94,7 @@ sed  -i '1b add
   b
   : end
   x
-  \|^[[:space:]]*$|! {s/^/'"\n##$(date)\n"'/
+  \|^[[:space:]]*$|! {s/^/'"\n### update at: $(date)\n"'/
   H
   } 
   x
@@ -118,7 +118,7 @@ while read -ra line; do
   [[ $repo_name && $user_repo && ! $dl_filename =~ ^# ]] &&
     get_release "$user_repo" "$dl_filename"
   [ $? -eq 0 ] && mv -f "$dl_filename" "$APPVEYOR_JOB_ID/$repo_name-$dl_filename" &&
-    sed -i '\| \+'"$user_repo"' \+'"$dl_filename"'|s/^/  - dl /' $1
+    sed -i '\| *'"$user_repo"' \+'"$dl_filename"'|s/^/  - dl /' $1
 #COMMENTBLOCK
 done <"$1"
 }
