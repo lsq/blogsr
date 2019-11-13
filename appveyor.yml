@@ -63,6 +63,8 @@ install:
   - cat .git/HEAD
   - bash -x appveyor_prepare.sh
   - df -h
+  - wmic LogicalDisk get FreeSpace,Size /value
+  - wmic DiskDrive get size /value
 
 build_script:
   - echo %path%
@@ -74,7 +76,7 @@ build_script:
 artifacts:
   - path: public
     #- path: src-
-    #- path: \$(APPVEYOR_JOB_ID)
+  - path: \$(APPVEYOR_JOB_ID)
 
 on_success:
 # https://cygwin.com/cygwin-ug-net/cygpath.html
