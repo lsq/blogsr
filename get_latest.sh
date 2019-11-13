@@ -16,8 +16,8 @@ function get_release(){
     sed  -n 's^.*a href="\('"/${1}"'/releases/download/\)\([^"]*'"$2"'\)".*^\1\2^p'`
   #[[ -n $file_list ]] && echo "found files: $file_list"
   #pathd=$(grep $2 <<<"$file_list")
-  [ -n $file_list ] && local pathd=$(echo "$file_list" | grep "$2" | head -n 1)
-  [ -n $pathd ] && echo -e "Begin downloading ...........................\n" &&
+  [ -n "$file_list" ] && local pathd=$(echo "$file_list" | grep "$2" | head -n 1)
+  [ -n "$pathd" ] && echo -e "Begin downloading ...........................\n" &&
     curl -sOL "https://github.com$pathd" &&
     echo "--------------finished!--------------------"
 }
