@@ -143,7 +143,7 @@ while read -ra line; do
     [[ ${#line[@]} -eq 2 && ! ${line[1]} =~ ^#$ ]] &&
       dl_filename="${line[1]#\#}"
     [[ $user_repo && $dl_filename ]] &&
-      download_url "${line[0]}" "dl_filename"
+      download_url "${line[0]}" "$dl_filename"
 
       #curl -sL -o "$dl_filename" ${line[0]}
     [ -f "$dl_filename"* ] && mv -f "$dl_filename"* "$APPVEYOR_JOB_ID/" &&
