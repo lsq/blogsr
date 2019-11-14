@@ -145,7 +145,7 @@ while read -ra line; do
       download_url "${line[0]}" "$dl_filename"
 
       #curl -sL -o "$dl_filename" ${line[0]}
-    [ -f "$dl_filename"* ] && mv -f "$dl_filename"* "$APPVEYOR_JOB_ID/" &&
+    ls "$dl_filename"*  && mv -f "$dl_filename"* "$APPVEYOR_JOB_ID/" &&
     sed -i '\|^ *'"${line[0]}"'|s/^/  - dl /' $1
   else
   [[ ${#line[@]} < 2 || ${line[1]} =~ ^# ]] && continue
