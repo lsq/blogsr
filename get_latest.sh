@@ -16,7 +16,8 @@ function get_release(){
     sed  -n 's^.*a href="\('"/${1}"'/releases/download/\)\([^"]*'"$2"'\)".*^\1\2^p'`
   #[[ -n $file_list ]] && echo "found files: $file_list"
   #pathd=$(grep $2 <<<"$file_list")
-  [ -n "$file_list" ] && local pathd=$(echo "$file_list" | grep "$2" | head -n 1)
+  [ -z "$file_list" ] && return 1
+  local pathd=$(echo "$file_list" | grep "$2" | head -n 1)
   [ -n "$pathd" ] && echo -e "Begin downloading ...........................\n" &&
     curl -sOL "https://github.com$pathd" &&
     echo "--------------finished!--------------------"
@@ -155,7 +156,7 @@ done <$1
 : <<'COMMENTBLOCK'
 COMMENTBLOCK
 
-function gen_log(){
+function gen_log() {
 cp -rf "$1" "$2"
 sed -i '1i\
 ---\
