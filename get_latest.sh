@@ -120,7 +120,7 @@ function download_url(){
     raw_url=$(curl -s ${line[0]} | sed -n -E 's|.*<a.*href="(.*)">Raw.*|\1|p')
     while read -ra raw;do
       [[ $raw ]] &&
-        curl -sL -o "$fname-${raw[0]%%*/}" "${uri_base}${raw_url}"
+        curl -sL -o "$fname-${raw[0]##*/}" "${uri_base}${raw_url}"
     done <<<"$raw_url"
   else
       curl -sL -o "$fname" ${line[0]}
