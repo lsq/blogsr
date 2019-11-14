@@ -110,6 +110,22 @@ sed  -i '1b add
   echo "file list updated!" >&2
   echo "====================" >&2
 }
+function download_url(){
+  local uri="$1"
+  local fname="$2"
+  if [[ $uri =~ github ]]; then
+    local raw
+    local uri_base=$(sed  -E 's|(.*//)([^/]*)/.*|\1\2|' <<<"${uri}")
+    local raw_url
+    raw_url=$(curl -s ${line[0]} | sed -n -E 's|.*<a.*href="(.*)">Raw.*|\1|p')
+    while read -ra raw;do
+      [[ $raw ]] &&
+        curl -sL -o "$fname-${raw[0]%%*/}" "${uri_base}${raw_url}"
+    done <<<"$raw_url"
+  else
+      curl -sL -o "$fname" ${line[0]}
+  fi
+}
 
 function download_file(){
   local user_repo
@@ -127,8 +143,10 @@ while read -ra line; do
     [[ ${#line[@]} -eq 2 && ! ${line[1]} =~ ^#$ ]] &&
       dl_filename="${line[1]#\#}"
     [[ $user_repo && $dl_filename ]] &&
-      curl -sL -o "$dl_filename" ${line[0]}
-    [ $? -eq 0 ] && mv -f "$dl_filename" "$APPVEYOR_JOB_ID/$user_repo-$dl_filename" &&
+      download_url "${line[0]}" "dl_filename"
+
+      #curl -sL -o "$dl_filename" ${line[0]}
+    [ -f "$dl_filename"* ] && mv -f "$dl_filename"* "$APPVEYOR_JOB_ID/" &&
     sed -i '\|^ *'"${line[0]}"'|s/^/  - dl /' $1
   else
   [[ ${#line[@]} < 2 || ${line[1]} =~ ^# ]] && continue
