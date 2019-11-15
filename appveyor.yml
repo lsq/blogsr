@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: Visual Studio 2017
+image: Visual Studio 2019
 environment:
   STATIC_SITE_REPO:
     secure: +u0A9TohuPL+e66QhZANB9exCjdcxe9XUhdnFu5ojtybR3jsgXM000IZqmCHHryG
