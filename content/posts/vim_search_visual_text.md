@@ -2,7 +2,7 @@
 title: "Vim search visual text"
 date: 2019-11-18T14:40:41Z
 description: "vim 搜索光标下文字"
-draft: true
+draft: false
 tags: ["vim"]
 categories: ["linux command tools"]
 ---
