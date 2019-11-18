@@ -1,12 +1,13 @@
 ---
-title: "Note 4"
+title: "Complete Sed Command Guide"
 date: Mon, 18 Nov 2019 18:04:57 +0800
 description: "Complete Sed Command Guide"
 draft: false
 tags: ["sed"]
 categories: ["linux command tools"]
 ---
-Complete Sed Command Guide \[Explained with Practical Examples\] 
+
+# Complete Sed Command Guide \[Explained with Practical Examples\]
 In a previous article, I showed the [basic usage of
 Sed](https://linuxhandbook.com/sed-command-basics/), the stream editor,
 on a practical use case. Today, be prepared to gain more insight about
