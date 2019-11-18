@@ -7,7 +7,8 @@ tags: ["sed"]
 categories: ["linux command tools"]
 ---
 
-# Complete Sed Command Guide \[Explained with Practical Examples\]
+# Complete Sed Command Guide [Explained with Practical Examples]
+
 In a previous article, I showed the [basic usage of
 Sed](https://linuxhandbook.com/sed-command-basics/), the stream editor,
 on a practical use case. Today, be prepared to gain more insight about
@@ -81,8 +82,6 @@ Table of Contents
 -----------------------------
 
 ![complete reference guide to sed
-commands](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05/sed-reference-guide.jpeg?resize=800%2C450)![complete
-reference guide to sed
 commands](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05/sed-reference-guide.jpeg?resize=800%2C450)
 
 
@@ -111,8 +110,6 @@ that:
 
 2.  If the read was successful:
 
-    
-
     a.  Apply in the script order all commands whose address matches the
         current input line
 
@@ -120,9 +117,6 @@ that:
         of the (potentially modified) pattern space
 
     c.  got back to 1.
-
-    
-
 
 
 Since the content of the pattern space is lost after each line is
