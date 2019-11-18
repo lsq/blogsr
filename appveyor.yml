@@ -29,7 +29,9 @@ init:
   # - bash -lc "/usr/bin/env pacman --noconfirm -Syu"
 
 # Fetch dependencies, build and run tests
-#clone_script:
+clone_script: 
+  - git clone --recurse-submodules https://github.com/%APPVEYOR_REPO_NAME% %APPVEYOR_BUILD_FOLDER%
+  - git checkout -qf %APPVEYOR_REPO_COMMIT%
 install:
   - ls -al .
   - pwd
@@ -46,7 +48,7 @@ install:
     #  - cmd: git clone --recursive  --branch=master https://github.com/lsq/blogsr.git C:\projects\blogsr
 
   - git checkout master
-  - git submodule update --init --recursive 
+    #- git submodule update --init --recursive 
   - cd themes/hugo-one 
   - ls -al .
   - git config -l
@@ -55,7 +57,7 @@ install:
   - git config -l 
     #- cd ../../
   - cd %APPVEYOR_BUILD_FOLDER%
-  - git submodule foreach "(git checkout master; git pull; git submodule foreach '(git checkout master ; git pull)')"
+    # - git submodule foreach "(git checkout master; git pull; git submodule foreach '(git checkout master ; git pull)')"
   - git status
   - cat .git/HEAD
   - git branch -v
