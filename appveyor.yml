@@ -30,7 +30,10 @@ init:
 
 # Fetch dependencies, build and run tests
 clone_script: 
-  - git clone --recurse-submodules https://github.com/%APPVEYOR_REPO_NAME% %APPVEYOR_BUILD_FOLDER%
+#- git clone --recurse-submodules https://github.com/%APPVEYOR_REPO_NAME% %APPVEYOR_BUILD_FOLDER%
+  - git clone https://github.com/%APPVEYOR_REPO_NAME% %APPVEYOR_BUILD_FOLDER%
+  - git submodule deinit --all --force
+  - git submodule update --init
   - git checkout -qf %APPVEYOR_REPO_COMMIT%
 install:
   - ls -al .
