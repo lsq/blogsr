@@ -13,8 +13,30 @@
   }
   s/&nbsp;/ /g
   /^[[:space:]]*$/ d
-  s/&quot;/"/g
+  s/&quot;/\"/g
   #s/[[:space:]]\\+/ /g
-  sed 's/&nbsp;/ /g; s/&amp;/\&/g; s/&lt;/\</g; s/&gt;/\>/g; s/&quot;/\"/g; s/&#39;/\'"'"'/g; s/&ldquo;/\"/g; s/&rdquo;/\"/g;'
-  #w t.txt
+ s/&nbsp;/ /g; s/&amp;/\&/g; s/&lt;/</g; s/&gt;/>/g; s/&quot;/\"/g; s/&#39;/\'/g; s/&ldquo;/\"/g; s/&rdquo;/\"/g
+  /#!\/usr/{
+   h
+   s/[^ ]\+.*//
+   x
+   s/^ \+//
+   b w
+ }
+  G
+  x
+  G
+  s/\( \+\)\n\1\(.\+\)\n\1$/\2/
+  T ne
+  :rs
+  x
+  s/.*\n//
+  x
+  :w
+  # w tt.txt
+  p
+  b
+  :ne
+  s/\( \+\)\n\(.\+\)\n\1$/\2/
+  b rs
 }
