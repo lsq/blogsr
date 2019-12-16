@@ -113,13 +113,16 @@ sed  -i '1b add
 function download_url(){
   local uri="$1"
   local fname="$2"
-  curl -v $uri
-  curl -I -w %{http_code} $uri
+  #curl -v $uri
+  curl -I -w "%{http_code}\n%{redirect_url}"$uri
+  curl -I -L $uri
+  
   curl -v -sSL -o /dev/null  $uri
   #curl -o /dev/null -w "%{content_type}\n%{url_effective}\n%{redirect_url}\n" -sSL $uri
   curl -o /dev/null -w "content_type: %{content_type}\nurl_effective: %{url_effective}\nredirect_url: %{redirect_url}\n" -sSL $uri
-  response_header=$(curl -sL -I -w %{content_type} -o /dev/null "$uri")
-  if [[ $uri =~ github ]]; then
+  
+  response_header=$(curl -s -I -w "content_type=%{content_type};redirect_url=%{redirect_url};http_code=%{http_code}" -o /dev/null "$uri")
+  if [[ $response_header =~  html.*http_code=200 ]]; then
     local raw
     local uri_base=$(sed  -E 's|(.*//)([^/]*)/.*|\1\2|' <<<"${uri}")
     local raw_url=$(curl -s $uri | sed -n -E 's|.*<a.*href="(.*)">Raw.*|\1|p')
