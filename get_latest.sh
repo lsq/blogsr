@@ -113,6 +113,8 @@ sed  -i '1b add
 function download_url(){
   local uri="$1"
   local fname="$2"
+  curl -v $url
+  curl -I -w %{http_code} $url
   curl -v -sSL -o /dev/null  $uri
   #curl -o /dev/null -w "%{content_type}\n%{url_effective}\n%{redirect_url}\n" -sSL $uri
   curl -o /dev/null -w "content_type: %{content_type}\nurl_effective: %{url_effective}\nredirect_url: %{redirect_url}\n" -sSL $uri
