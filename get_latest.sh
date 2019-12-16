@@ -126,11 +126,15 @@ function download_url(){
     local raw
     local uri_base=$(sed  -E 's|(.*//)([^/]*)/.*|\1\2|' <<<"${uri}")
     local raw_url=$(curl -s $uri | sed -n -E 's|.*<a.*href="(.*)">Raw.*|\1|p')
+   if [ -n "$raw_url" ]; then
     while read -ra raw;do
       [[ $raw ]] &&
         curl -sL -o "$fname-${raw[0]##*/}" "${uri_base}${raw[0]}"
     done <<<"$raw_url"
-  else
+   else
+     curl -s -o "$fname" $uri
+   fi
+  elif [[ $response_header =~ redirect_url=\".*\".*http_code=302 ]]; then
       curl -sL -o "$fname" $uri
   fi
 }
