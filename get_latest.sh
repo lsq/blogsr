@@ -115,7 +115,7 @@ function download_url(){
   local fname="$2"
   curl -v -sSL -o /dev/null  $uri
   #curl -o /dev/null -w "%{content_type}\n%{url_effective}\n%{redirect_url}\n" -sSL $uri
-  curl -w "content_type: %{content_type}\nurl_effective: %{url_effective}\nredirect_url: %{redirect_url}\n" -sSL $uri
+  curl -o /dev/null -w "content_type: %{content_type}\nurl_effective: %{url_effective}\nredirect_url: %{redirect_url}\n" -sSL $uri
   response_header=$(curl -sL -I -w %{content_type} -o /dev/null "$uri")
   if [[ $uri =~ github ]]; then
     local raw
