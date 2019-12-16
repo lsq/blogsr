@@ -113,6 +113,7 @@ sed  -i '1b add
 function download_url(){
   local uri="$1"
   local fname="$2"
+  curl -v -sSL $uri
   response_header=$(curl -sL -I -w %{content_type} -o /dev/null "$uri")
   if [[ $uri =~ github ]]; then
     local raw
