@@ -9,7 +9,7 @@ pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = false
 pygmentsStyle = "monokailight"
 pygmentsOptions = ['linenos']
-disqusShortname = "often9"
+disqusShortname = "lsq"
 
 [params]
   siteCreated = 2019
