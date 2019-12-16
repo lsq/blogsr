@@ -114,7 +114,7 @@ function download_url(){
   local uri="$1"
   local fname="$2"
   #curl -v $uri
-  curl -I -w "%{http_code}\n%{redirect_url}"$uri
+  curl -I -w "%{http_code}\n%{redirect_url}" $uri
   curl -I -L $uri
   
   curl -v -sSL -o /dev/null  $uri
