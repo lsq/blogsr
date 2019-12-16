@@ -114,8 +114,8 @@ function download_url(){
   local uri="$1"
   local fname="$2"
   #curl -v $uri
-  curl -I -w "%{http_code}\n%{redirect_url}" $uri
-  curl -I -L $uri
+  # curl -I -w "%{http_code}\n%{redirect_url}" $uri
+  # curl -I -L $uri
   
   #curl -v -sSL -o /dev/null  $uri
   #curl -o /dev/null -w "%{content_type}\n%{url_effective}\n%{redirect_url}\n" -sSL $uri
@@ -134,7 +134,8 @@ function download_url(){
    else
      curl -s -o "$fname" $uri
    fi
-  elif [[ $response_header =~ redirect_url=\".*\".*http_code=302 ]]; then
+  # elif [[ $response_header =~ redirect_url=\".*\".*http_code=302 ]]; then
+  else
       curl -sL -o "$fname" $uri
   fi
 }
