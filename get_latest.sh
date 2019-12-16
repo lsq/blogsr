@@ -113,16 +113,17 @@ sed  -i '1b add
 function download_url(){
   local uri="$1"
   local fname="$2"
+  response_header=$(curl -sL -I -w %{content_type} -o /dev/null "$uri")
   if [[ $uri =~ github ]]; then
     local raw
     local uri_base=$(sed  -E 's|(.*//)([^/]*)/.*|\1\2|' <<<"${uri}")
-    local raw_url=$(curl -s ${line[0]} | sed -n -E 's|.*<a.*href="(.*)">Raw.*|\1|p')
+    local raw_url=$(curl -s $uri | sed -n -E 's|.*<a.*href="(.*)">Raw.*|\1|p')
     while read -ra raw;do
       [[ $raw ]] &&
         curl -sL -o "$fname-${raw[0]##*/}" "${uri_base}${raw[0]}"
     done <<<"$raw_url"
   else
-      curl -sL -o "$fname" ${line[0]}
+      curl -sL -o "$fname" $uri
   fi
 }
 
