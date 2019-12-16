@@ -121,7 +121,7 @@ function download_url(){
   #curl -o /dev/null -w "%{content_type}\n%{url_effective}\n%{redirect_url}\n" -sSL $uri
   #curl -o /dev/null -w "content_type: %{content_type}\nurl_effective: %{url_effective}\nredirect_url: %{redirect_url}\n" -sSL $uri
   
-  response_header=$(curl -s -I -w "content_type=\"%{content_type}\"|redirect_url=%{redirect_url}|http_code=%{http_code}" -o /dev/null "$uri")
+  response_header=$(curl -s -I -w "content_type=\"%{content_type}\"|redirect_url=\"%{redirect_url}\"|http_code=%{http_code}" -o /dev/null "$uri")
   if [[ $response_header =~  html.*http_code=200 ]]; then
     local raw
     local uri_base=$(sed  -E 's|(.*//)([^/]*)/.*|\1\2|' <<<"${uri}")
