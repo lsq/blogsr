@@ -81,7 +81,7 @@ COMMENTBLOCK
 sed  -i '1b add
   :beg
   \^'"${flist[0]}"' \+'"${flist[1]}"'^{
-  /^ *#/b add
+  /^ *#/b
   x
   s|\n'"${flist[0]} ${flist[1]}"'||
   x
@@ -95,8 +95,8 @@ sed  -i '1b add
   }
   x
   1b beg
-  $b end
-  b
+  #$b end
+  #b
   : end
   x
   \|^[[:space:]]*$|! {s/^/'"\n### update at: $(TZ='Asia/Shanghai' date)\n"'/
