@@ -86,6 +86,7 @@ sed  -i '1b add
   s|\n'"${flist[0]} ${flist[1]}"'||
   x
   }
+  T del
   $b end
   b
   :add;
@@ -97,6 +98,8 @@ sed  -i '1b add
   1b beg
   #$b end
   #b
+  : del
+  d
   : end
   x
   \|^[[:space:]]*$|! {s/^/'"\n### update at: $(TZ='Asia/Shanghai' date)\n"'/

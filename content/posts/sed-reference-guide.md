@@ -210,8 +210,6 @@ scripts.
 
 ![The Sed execution
 model](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-flowchart.png)
-![The Sed execution
-model](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-flowchart.png)
 
 
 
@@ -231,8 +229,6 @@ Sed abstract machine.
 
 
 
-![The Sed \`print\`
-command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-print-command.png)
 ![The Sed \`print\`
 command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-print-command.png)
 
@@ -518,8 +514,7 @@ lines (except of course if there is not enough input data):
 
 
 
-<a name="_complement"></a>
-### Complement 
+### <a name="_complement">Complement</a>
 
 Adding an exclamation mark (`!`) after an address select lines *not*
 matching that address. For example:
@@ -564,8 +559,6 @@ iteration.
 
 
 
-![The Sed \`quit\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-quit-command.png)
 ![The Sed \`quit\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-quit-command.png)
 
@@ -638,8 +631,6 @@ the web.
 
 
 
-![The Sed \`substitution\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-substitution-command.png)
 ![The Sed \`substitution\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-substitution-command.png)
 
@@ -747,8 +738,6 @@ implicit print of the pattern space even if the auto-print flag is set.
 
 ![The Sed \`delete\`
 command](https://i1.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-delete-command.png)
-![The Sed \`delete\`
-command](https://i1.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-delete-command.png)
 
 
 
@@ -780,8 +769,6 @@ with the new pattern space.
 
 
 
-![The Sed \`next\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-next-command.png)
 ![The Sed \`next\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-next-command.png)
 
@@ -842,8 +829,6 @@ anything into the hold space, it is empty.
 
 
 
-![The Sed \`exchange\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-exchange-command.png)
 ![The Sed \`exchange\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-exchange-command.png)
 
@@ -907,8 +892,6 @@ commands came in two flavors:
 
 ![The Sed \`hold\`
 command](https://i1.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-hold-command.png)
-![The Sed \`hold\`
-command](https://i1.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-hold-command.png)
 
 
 
@@ -959,8 +942,6 @@ Here again, it comes in two flavors:
 
 
 
-![The Sed \`get\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-get-command.png)
 ![The Sed \`get\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-get-command.png)
 
@@ -1026,15 +1007,11 @@ version of those commands will be related to multi-line buffers:
 
 ![The Sed uppercase \`Delete\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-delete-upper-command.png)
-![The Sed uppercase \`Delete\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-delete-upper-command.png)
 
 
 
 
 
-![The Sed uppercase \`Next\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-next-upper-command.png)
 ![The Sed uppercase \`Next\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-next-upper-command.png)
 
@@ -1103,8 +1080,6 @@ statements, but you can implement them using branches.
 
 ![The Sed \`branch\`
 command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-branch-command.png)
-![The Sed \`branch\`
-command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-branch-command.png)
 
 
 
@@ -1118,8 +1093,6 @@ explicitly defined using a label.
 
 
 
-![The Sed \`label\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-label-command.png)
 ![The Sed \`label\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-label-command.png)
 
@@ -1177,8 +1150,6 @@ branch. More formally, the test command will branch only if the
 
 
 
-![The Sed \`test\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-test-command.png)
 ![The Sed \`test\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-test-command.png)
 
@@ -1345,8 +1316,6 @@ provided text is written on the output when the command is executed.
 
 ![The Sed \`change\`
 command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-change-command.png)
-![The Sed \`change\`
-command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-change-command.png)
 
 
 
@@ -1393,8 +1362,6 @@ content.
 
 ![The Sed \`insert\`
 command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-insert-command.png)
-![The Sed \`insert\`
-command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-insert-command.png)
 
 
 
@@ -1420,8 +1387,6 @@ from the input using either the `n` or `N` command.
 
 
 
-![The Sed \`append\`
-command](https://i1.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-append-command.png)
 ![The Sed \`append\`
 command](https://i1.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-append-command.png)
 
@@ -1503,8 +1468,6 @@ already exists, it is overwritten.
 
 ![The Sed \`write\`
 command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-write-command.png)
-![The Sed \`write\`
-command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-write-command.png)
 
 
 
@@ -1565,8 +1528,6 @@ be hardly understandable by anyone except their author.
 
 ![The Sed \`comment\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-comment-command.png)
-![The Sed \`comment\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-comment-command.png)
 
 
 
@@ -1613,8 +1574,6 @@ of that command.
 
 ![The Sed \`line number\`
 command](https://i1.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-current-line-command.png)
-![The Sed \`line number\`
-command](https://i1.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-current-line-command.png)
 
 
 
@@ -1656,8 +1615,6 @@ standard](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/sed.html):
 
 ![The Sed \`unambiguous print\`
 command](https://i1.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-unambiguous-print-command.png)
-![The Sed \`unambiguous print\`
-command](https://i1.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-unambiguous-print-command.png)
 
 
 
@@ -1678,8 +1635,6 @@ space from a source set to a destination set. It is quite similar to the
 
 
 
-![The Sed \`transliterate\`
-command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-transliterate-command.png)
 ![The Sed \`transliterate\`
 command](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-transliterate-command.png)
 
