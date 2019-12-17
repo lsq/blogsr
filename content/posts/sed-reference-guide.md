@@ -30,52 +30,52 @@ Table of Contents
 
 
 
--   [A little bit of theory](#_a_little_bit_of_theory)
+-   [A little bit of theory](#a-little-bit-of-theory)
     -   [A first look at the sed execution
-        model](#_a_first_look_at_the_sed_execution_model)
-    -   [The Sed abstract machine](#_the_sed_abstract_machine)
+        model](#a-first-look-at-the-sed-execution-model)
+    -   [The Sed abstract machine](#the-sed-abstract-machine)
     -   [A more accurate Sed execution
-        model](#_a_more_accurate_sed_execution_model)
--   [The print command](#_the_print_command)
+        model](#a-more-accurate-sed-execution-model)
+-   [The print command](#the-print-command)
 -   [Addresses](#addresses)
-    -   [Line numbers](#_line_numbers)
+    -   [Line numbers](#line-numbers)
     -   [Regular expressions](#regex)
-    -   [Extended regular expressions](#_extended_regular_expressions)
-    -   [The bracket quantifier](#_the_bracket_quantifier)
+    -   [Extended regular expressions](#extended-regular-expressions)
+    -   [The bracket quantifier](#the-bracket-quantifier)
     -   [Range addresses](#range)
-    -   [Complement](#_complement)
-    -   [Conjunctions](#_conjunctions)
--   [The quit command](#_the_quit_command)
+    -   [Complement](#complement)
+    -   [Conjunctions](#conjunctions)
+-   [The quit command](#the-quit-command)
 -   [The substitution command](#substitution)
-    -   [The delete command](#_the_delete_command)
-    -   [The next command](#_the_next_command)
--   [Working with the hold space](#_working_with_the_hold_space)
+    -   [The delete command](#the-delete-command)
+    -   [The next command](#the-next-command)
+-   [Working with the hold space](#working-with-the-hold-space)
     -   [The exchange command](#exchange)
     -   [The hold commands](#hold)
     -   [The get command](#get)
 -   [print, delete and next
-    revisited](#_print_delete_and_next_revisited)
+    revisited](#print-delete-and-next-revisited)
 -   [Branching](#branches)
-    -   [labels and branches](#_labels_and_branches)
-    -   [Conditional branch](#_conditional_branch)
--   [Handling verbatim text](#_handling_verbatim_text)
-    -   [The change command](#_the_change_command)
-    -   [The insert command](#_the_insert_command)
-    -   [The append command](#_the_append_command)
+    -   [labels and branches](#labels-and-branches)
+    -   [Conditional branch](#conditional-branch)
+-   [Handling verbatim text](#handling-verbatim-text)
+    -   [The change command](#the-change-command)
+    -   [The insert command](#the-insert-command)
+    -   [The append command](#the-append-command)
     -   [The read command](#read)
--   [Alternate output](#_alternate_output)
+-   [Alternate output](#alternate-output)
     -   [The write command](#write)
     -   [The substitution command `write` flag](#write-flag)
 -   [Comments](#comment)
 -   [The commands you will rarely
-    need](#_the_commands_you_will_rarely_need)
-    -   [The line number command](#_the_line_number_command)
-    -   [The unambiguous print command](#_the_unambiguous_print_command)
-    -   [The transliterate command](#_the_transliterate_command)
--   [The last word](#_the_last_word)
+    need](#the-commands-you-will-rarely-need)
+    -   [The line number command](#the-line-number-command)
+    -   [The unambiguous print command](#the-unambiguous-print-command)
+    -   [The transliterate command](#the-transliterate-command)
+-   [The last word](#the-last-word)
 
 
-<div id="_a_little_bit_of_theory"></div>
+<div id="a-little-bit-of-theory"></div>
 
 ### A little bit of theory on Sed
 
@@ -87,7 +87,7 @@ commands](https://i0.wp.com/linuxhandbook.com/wp-content/uploads/2018/05/sed-ref
 
 
 ### A first look at the sed execution model
- <div id="_a_first_look_at_the_sed_execution_model"></div>
+ <div id="a-first-look-at-the-sed-execution-model"></div>
 
 To truly understand Sed you must first understand the tool execution
 model.
@@ -130,7 +130,7 @@ investigate that more in depth later when studying the
 
 
 
-### The Sed abstract machine <a name="_the_sed_abstract_machine" ></a>
+### The Sed abstract machine <a name="the-sed-abstract-machine" ></a>
 
 The model explained above is what you will see described in many Sed
 tutorials. Indeed, it is correct enough to understand the most basic Sed
@@ -196,7 +196,7 @@ command description.
 
 
 
-<a name="_a_more_accurate_sed_execution_model"></a>
+<a name="a-more-accurate-sed-execution-model"></a>
 ### A more accurate Sed execution model 
 
 As a picture worth thousands of words, I draw a flowchart describing the
@@ -219,7 +219,7 @@ without further ado, let’s start our tour!
 
 
 
-<a name="_the_print_command"></a>
+<a name="the-print-command"></a>
 The print command 
 -----------------
 
@@ -268,7 +268,7 @@ from a file. But what’s an address for Sed? And how are identified the
 
 
 
-<a name="_line_numbers"></a>
+<a name="line-numbers"></a>
 ### Line numbers 
 
 A Sed address can be either a *line number* (with the extension of `$`
@@ -386,7 +386,7 @@ literal slashes like when working with file paths:
 
 
 
-<a name="_extended_regular_expressions"></a>
+<a name="extended-regular-expressions"></a>
 ### Extended regular expressions 
 
 By default, the Sed regular expression engine only understands the
@@ -405,7 +405,7 @@ important maybe, they require far fewer backslashes. I let you compare:
 
 
 
-<a name="_the_bracket_quantifier"></a>
+<a name="the-bracket-quantifier"></a>
 ### The bracket quantifier 
 
 One powerful feature of regular expressions is the [range
@@ -514,7 +514,7 @@ lines (except of course if there is not enough input data):
 
 
 
-### <a name="_complement">Complement</a>
+### <a name="complement">Complement</a>
 
 Adding an exclamation mark (`!`) after an address select lines *not*
 matching that address. For example:
@@ -527,7 +527,7 @@ matching that address. For example:
 
 
 
-<a name="_conjunctions"></a>
+<a name="conjunctions"></a>
 ### Conjunctions 
 
 Sed allows to group commands in blocks using brackets (`{…​}`). You can
@@ -550,7 +550,7 @@ various Sed commands.
 
 
 
-<a name="_the_quit_command"></a>
+<a name="the-quit-command"></a>
 The quit command 
 ----------------
 
@@ -727,7 +727,7 @@ substitution command. We will examine it in detail [later](#write-flag).
 
 
 
-<a name="_the_delete_command"></a>
+<a name="the-delete-command"></a>
 ### The delete command 
 
 The delete command (`d`) is used to clear the pattern space and
@@ -759,7 +759,7 @@ expression-based addresses to remove matching lines from the output:
 
 
 
-<a name="_the_next_command"></a>
+<a name="the-next-command"></a>
 ### The next command 
 
 This command prints the current pattern space if Sed is not running in
@@ -809,7 +809,7 @@ to process lines *relative* to some address:
 
 
 
-<a name="_working_with_the_hold_space"></a>
+<a name="working-with-the-hold-space"></a>
 Working with the hold space 
 ---------------------------
 
@@ -969,7 +969,7 @@ shell from the others:
 
 
 
-<a name="_print_delete_and_next_revisited"></a>
+<a name="print-delete-and-next-revisited"></a>
 print, delete and next revisited 
 --------------------------------
 
@@ -1069,7 +1069,7 @@ kinds of applications using sed!
 
 
 
-<a name="_labels_and_branches"></a>
+<a name="labels-and-branches"></a>
 ### labels and branches 
 
 By some aspects, you can see Sed as a very limited assembly language. So
@@ -1130,7 +1130,7 @@ be used as an alternative to blocks:
 
 
 
-<a name="_conditional_branch"></a>
+<a name="conditional-branch"></a>
 ### Conditional branch 
 
 Until now, we’ve seen the so-called unconditional branches, even if the
@@ -1250,7 +1250,7 @@ command. And gives us the solution to fix that program:
 
 
 
-<a name="_handling_verbatim_text"></a>
+<a name="handling-verbatim-text"></a>
 Handling verbatim text 
 ----------------------
 
@@ -1305,7 +1305,7 @@ now, starting with the change command I didn’t have presented yet.
 
 
 
-<a name="_the_change_command"></a>
+<a name="the-change-command"></a>
 ### The change command 
 
 The change command (`c\`) deletes the pattern space and starts a new
@@ -1351,7 +1351,7 @@ a block:
 
 
 
-<a name="_the_insert_command"></a>
+<a name="the-insert-command"></a>
 ### The insert command 
 
 The insert command (`i\`) immediately print the user-provided text on
@@ -1377,7 +1377,7 @@ command](https://i2.wp.com/linuxhandbook.com/wp-content/uploads/2018/05//sed-ins
 
 
 
-<a name="_the_append_command"></a>
+<a name="the-append-command"></a>
 ### The append command 
 
 The append command (`a\`) queues some text to be displayed when the next
@@ -1444,7 +1444,7 @@ an external file from Sed.
 
 
 
-<a name="_alternate_output"></a>
+<a name="alternate-output"></a>
 Alternate output 
 ----------------
 
@@ -1547,7 +1547,7 @@ If that exact comment if found on the very first line of a script, Sed
 should switch to quiet mode (i.e., clearing the auto-print flag) just
 like if the `-n` option was specified on the command line.
 
-<a name="_the_commands_you_will_rarely_need"></a>
+<a name="the-commands-you-will-rarely-need"></a>
 The commands you will rarely need 
 ---------------------------------
 
@@ -1561,7 +1561,7 @@ section.
 
 
 
-<a name="_the_line_number_command"></a>
+<a name="the-line-number-command"></a>
 ### The line number command 
 
 The `=` command writes on the standard output the number of lines
@@ -1587,7 +1587,7 @@ each input file.
 
 
 
-<a name="_the_unambiguous_print_command"></a>
+<a name="the-unambiguous-print-command"></a>
 ### The unambiguous print command 
 
 The `l` (lowercase letter ell) is similar to the print command (`p`),
@@ -1626,7 +1626,7 @@ myself, I never used it for anything else than for debugging purposes.
 
 
 
-<a name="_the_transliterate_command"></a>
+<a name="the-transliterate-command"></a>
 ### The transliterate command 
 
 The transliterate (`y`) command allows mapping characters of the pattern
@@ -1662,7 +1662,7 @@ following Sed program does not do what you might think at first sight:
 
 
 
-<a name="_the_last_word"></a>
+<a name="the-last-word"></a>
 The last word 
 -------------
 
