@@ -43,7 +43,7 @@ function get_download_list() {
 ###  paragraph
       s/<[^<]*>//g
       /^$/d
-      s/^\[.*\] //
+      s/^ *\[.*\] *//
       p
     }
   }
