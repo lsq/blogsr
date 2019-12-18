@@ -72,7 +72,7 @@ install:
   - wmic LogicalDisk get FreeSpace,Size /value
   - wmic DiskDrive get size /value
 
-before_build：
+before_build:
   - bash -x appveyor_before.sh
 build_script:
   - echo %path%
