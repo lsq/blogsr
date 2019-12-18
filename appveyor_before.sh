@@ -1,3 +1,3 @@
 set -ex
 
-sed -i -f bin/add-code-style.sed content/post/sed-reference-guide.md
+sed -i -f bin/add-code-style.sed content/posts/sed-reference-guide.md
