@@ -1,5 +1,5 @@
 ---
-title: "Complete Sed Command Guide"
+title: "vim中自动格式化代码"
 date: Fri, 10 Jan 2020 20:02:42 +0800
 description: "vim中自动格式化代码"
 draft: false
