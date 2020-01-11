@@ -85,8 +85,8 @@ sed  -i '1b add
   x
   s|\n'"${flist[0]} ${flist[1]}"'||
   x
-  }
   T del
+  }
   $b end
   b
   :add;
