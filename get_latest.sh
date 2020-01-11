@@ -156,8 +156,12 @@ while read -ra line; do
     user_repo=`: ${line[0]#*//};echo ${_%%/*}` 
     [[ ${#line[@]} -eq 1 ]] || [[ ${#line[@]} -ge 2 && ${line[1]} = "#" ]] &&
       dl_filename="${line[0]##*/}"
-    [[ ${#line[@]} -eq 2 && ! ${line[1]} =~ ^#$ ]] &&
+    if [[ ${#line[@]} -eq 2 && ! ${line[1]} =~ ^#$ ]] ;then
       dl_filename="${line[1]#\#}"
+      if [[ -z $dl_filename ]] ;then
+        dl_filename=`: ${line[0]/%\/};echo ${_##*/}`
+      fi
+    fi
     [[ $user_repo && $dl_filename ]] &&
       download_url "${line[0]}" "$dl_filename"
 
