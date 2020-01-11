@@ -154,8 +154,9 @@ while read -ra line; do
   [[ ${#line[@]} < 1 || ${line[0]} =~ ^# ]] && continue
   if [[ ${line[@]} && ${line[0]} =~ ^(http|ftp) ]]; then
     user_repo=`: ${line[0]#*//};echo ${_%%/*}` 
-    [[ ${#line[@]} -eq 1 ]] || [[ ${#line[@]} -ge 2 && ${line[1]} = "#" ]] &&
-      dl_filename="${line[0]##*/}"
+    if [[ ${#line[@]} -eq 1 ]] || [[ ${#line[@]} -ge 2 && ${line[1]} = "#" ]] ;then
+      dl_filename=`: ${line[0]/%\/}; printf ${_##*/}`
+    fi
     if [[ ${#line[@]} -eq 2 && ! ${line[1]} =~ ^#$ ]] ;then
       dl_filename="${line[1]#\#}"      
     fi
