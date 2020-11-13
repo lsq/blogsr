@@ -85,8 +85,8 @@ sed  -i '1b add
   x
   s|\n'"${flist[0]} ${flist[1]}"'||
   x
-  T del
   }
+  T del
   $b end
   b
   :add;
@@ -154,9 +154,8 @@ while read -ra line; do
   [[ ${#line[@]} < 1 || ${line[0]} =~ ^# ]] && continue
   if [[ ${line[@]} && ${line[0]} =~ ^(http|ftp) ]]; then
     user_repo=`: ${line[0]#*//};echo ${_%%/*}` 
-    if [[ ${#line[@]} -eq 1 ]] || [[ ${#line[@]} -ge 2 && ${line[1]} = "#" ]] ;then
-      dl_filename=`: ${line[0]/%\/}; printf ${_##*/}`
-    fi
+    [[ ${#line[@]} -eq 1 ]] || [[ ${#line[@]} -ge 2 && ${line[1]} = "#" ]] &&
+      dl_filename="${line[0]##*/}"
     if [[ ${#line[@]} -eq 2 && ! ${line[1]} =~ ^#$ ]] ;then
       dl_filename="${line[1]#\#}"      
     fi
@@ -219,7 +218,11 @@ sed -i '## s/$/\n/
 ' "$2"
 }
 
+APPVEYOR_REPO_COMMIT=lsjq32lalkdq
+APPVEYOR_JOB_ID=lslqlkd
+APPVEYOR_BUILD_ID=lakaklajb
+
 url="https://github.com/lsq/blogsr/issues/1"
 update_download_list $url "$1"
-download_file "$1" 
-gen_log "$1" "$2"
+#download_file "$1" 
+#gen_log "$1" "$2"
