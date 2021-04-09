@@ -51,6 +51,8 @@ D:\Program Files\ImageMagick-7.0.10-Q16-HDRI;c:\lua541;D:\Program Files\inkscape
 ```
 pdfcrop foo.pdf f.pdf
 gswin64c.exe -dNOPAUSE -sDEVICE=png16m -r600  -sOutputFile=foo.png o.pdf -dBATCH
+# png256 png16 pnggray pngmono
+gswin64c.exe -dNOPAUSE -q -sDEVICE=pnggray -r500 -dBATCH -dFirstPage=2 -dLastPage=2 -sOutputFile=test.png test.pdf
 
 ```
 ```vbscript
@@ -210,6 +212,8 @@ End Sub
 
 ```bash
 identify -verbose ex1.emf
-convert -density 300 -size 800x800 ex1.emf ff.png
+
+identify -units PixelsPerinch -format "%xx%y by %[printsize.x]x%[printsize.y] by %wx%h by %U" outPutValue2020-12-10.png
+convert -units PixelsPerinch -density 300 -size 800x800 ex1.emf ff.png
 ```
 
