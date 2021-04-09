@@ -3,7 +3,7 @@ title: "shell查找文件中包含中文的行"
 date: Tue, 13 Nov 2020 10:51:10 +0800
 description: "shell查找文件中包含中文的行"
 draft: false
-tags: ["git xxd iconv printf"]
+tags: ["git", "xxd", "iconv", "printf"]
 categories: ["linux command tools"]
 ---
 ## windwos 系统中git clone 下来文件名乱码原因

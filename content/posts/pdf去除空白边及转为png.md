@@ -3,7 +3,7 @@ title: "pdf去除空白边及转为png"
 date: Wed, 09 Dec 2020 17:09:52 +0800
 description: "pdf去除空白边及转为png"
 draft: false
-tags: ["tex" "pdf"]
+tags: ["tex","pdf"]
 categories: ["office"]
 ---
 ## Intro

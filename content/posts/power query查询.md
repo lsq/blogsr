@@ -3,7 +3,7 @@ title: "power query查询"
 date: Fri, 09 Apr 2021 09:37:25 +0800
 description: "power query查询"
 draft: false
-tags: ["spider" "ruby" "power query" "财务"]
+tags: ["spider", "ruby", "power query", "财务"]
 categories: ["office"]
 ---
 ## 背景
