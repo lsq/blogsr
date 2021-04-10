@@ -7,7 +7,7 @@ tags: ["spider", "ruby", "power query", "财务"]
 categories: ["office"]
 ---
 ## 背景
-去年疫情影响，深圳市政府人力资源和社会保障局出台了“以工代训”补贴政策，这个项目我做完了后在一体化平台查询到有公示，但具体不清楚是哪天公示的（公示后1个月左右财政拨款）、哪天拨款到公司账户。大家都能想到的方法是去人力资源网站查询了，我也是普通人，也是这么干的，但是打开公示信息栏看到的是这样的，具体在哪在一百多批中的哪批呢​. 
+去年疫情影响，深圳市政府人力资源和社会保障局出台了“以工代训”补贴政策，这个项目我做完了后在一体化平台查询到有公示，但具体不清楚是哪天公示的（公示通过后次月月底前财政拨款）、哪天拨款到公司账户。大家都能想到的方法是去人力资源网站查询了，我也是普通人，也是这么干的，但是打开公示信息栏看到的是这样的，具体在哪在一百多批中的哪批呢. 
 ![list](./ygdx/list.png)
 常见做法有：
 
@@ -24,7 +24,7 @@ categories: ["office"]
 
 1. **RubyInstaller**安装
 2. **Gems**安装
-3. **Excel 2016**及以上版本（低版本不包含Power Query）
+3. **Excel 2016**及以上版本（低版本不包含**Power Query**）
 
 ##### STEP 1.  RubyInstaller安装
 
@@ -62,7 +62,7 @@ gem install *.gem
 
 3. 安装aria2多线程加速下载工具
 
-配置文件可以参考[P3TERX/aria2.conf](https://github.com/P3TERX/aria2.conf)
+aria2配置文件[下载地址](https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/aria2-windows.conf)，配置文件可以参考[P3TERX/aria2.conf](https://github.com/P3TERX/aria2.conf)
 
 编译参考[aria2-build-msys2](https://github.com/myfreeer/aria2-build-msys2)、[aria2-static-builds](https://github.com/q3aql/aria2-static-builds)、[Aria2-Pro-Core](https://github.com/P3TERX/Aria2-Pro-Core)
 
@@ -79,7 +79,7 @@ aria2c --conf-path=~/.aria2.conf
 
 主要是爬虫人力资源网站公示信息中包含“以工代训”链接，并打开链接下载公示表格
 
-代码用ruby写的，[下载链接](https://github.com/lsq/blogsr/tree/master/content/postsygdx/getFiles.rb)
+代码用ruby写的，[下载链接](https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/getFiles.rb)
 ```shell
 ruby getFile.rb
 # 大概10s左右下载完
