@@ -1,5 +1,5 @@
 ---
-title: "power query查询"
+title: "Ruby Spider 人力资源网站和power query合并查询"
 date: Fri, 09 Apr 2021 09:37:25 +0800
 description: "power query查询"
 draft: false
@@ -8,7 +8,7 @@ categories: ["office"]
 ---
 ## 背景
 去年疫情影响，深圳市政府人力资源和社会保障局出台了“以工代训”补贴政策，这个项目我做完了后在一体化平台查询到有公示，但具体不清楚是哪天公示的（公示通过后次月月底前财政拨款）、哪天拨款到公司账户。大家都能想到的方法是去人力资源网站查询了，我也是普通人，也是这么干的，但是打开公示信息栏看到的是这样的，具体在哪在一百多批中的哪批呢. 
-![list](./ygdx/list.png)
+![list](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/list.png)
 常见做法有：
 
 1. 一个一个下载打开查找
@@ -17,7 +17,7 @@ categories: ["office"]
 4. 直接爬虫人力资源网站直接读取表格内容，抓取符合内容
 5. 其他更好的方法（欢迎指导）
 
-**方法3**过年在家空闲时间已经实现，鉴于时间没有整理成文，现记录以供同仁相互切磋；方法3主要记录Power Query的用法，至于Spider内容有兴趣的可以相互学习。
+**方法3**过年在家空闲时间已经实现，鉴于时间没有整理成文，现记录以供同仁相互切磋；方法3主要记录Power Query的用法，至于Spider内容有兴趣的可以相互学习；**方法4**下次再分享。
 
 ## 数据处理
 #### 工具准备
@@ -30,11 +30,11 @@ categories: ["office"]
 
  RubyInstaller可以在官网上下载，为方便更快下载，可以由[上海交通大学软件源镜像服务](https://mirrors.sjtug.sjtu.edu.cn/)提供所有镜像[rubyinstaller2](https://mirror.sjtu.edu.cn/github-release/oneclick/rubyinstaller2/releases/download/?mirror_intel_list)存档中下载，或者通过[rubyinstaller.cn](https://rubyinstaller.cn/downloads/)下载**Ruby+Devkit 2.7.X**或者**Ruby+Devkit 3.0.X**
 
-![rubyinstaller](./ygdx/rubyinstaller.png)
+![rubyinstaller](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/rubyinstaller.png)
 <!--
-<img src="./ygdx/rubyinstaller.png" width="200px" />
-<img src="./ygdx/rubyinstaller.png" style="height:200px" />
-<img src="./ygdx/rubyinstaller.png" style="zoom:50%" />
+<img src="/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/rubyinstaller.png" width="200px" />
+<img src="/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/rubyinstaller.png" style="height:200px" />
+<img src="/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/rubyinstaller.png" style="zoom:50%" />
 or-->
 
 
@@ -85,9 +85,9 @@ ruby getFile.rb
 # 大概10s左右下载完
 ```
 
-![getFiles](./ygdx/getFiles.png)
+![getFiles](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/getFiles.png)
 
-![ruby](./ygdx/ruby.png)![aria2ng](./ygdx/aria2.png)![fileList](./ygdx/fileList.png)
+![ruby](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/ruby.png)![aria2ng](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/aria2.png)![fileList](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/fileList.png)
 
 #### Power Query 查询数据
 
@@ -116,18 +116,18 @@ in
 
 STEP **1**. 新建一个空白工作薄“公示查询”，打开并切换到《**数据**》标签页面，然后选择”**新建查询**“》”**其他源**“》”**空白查询**“，打开”**高级编辑器**“
 
-![qeury1](./ygdx/bl_query.png)
-![qeury2](./ygdx/blank_query1.png)
+![qeury1](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/bl_query.png)
+![qeury2](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/blank_query1.png)
 
 
 
 STEP **2**.全选并删除默认查询代码，然后粘贴**查询代码**，最后点击”**完成**“，就会出现查询结果，此步骤**注意**个改查询代码中的目录位置(**源**中的路径)
-![qeury3](./ygdx/query_code.png)
-![qeury4](./ygdx/query_process.png)
+![qeury3](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/query_code.png)
+![qeury4](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/query_process.png)
 
 
 
 STEP **3**.点击左上角“**关闭并上载**”下的**箭头**，选择“**关闭并上载至...**”选项，选择“**现有工作表**”，“**加载**”后就是最终结果。
-![qeury5](./ygdx/save_qr.png)
-![qeury6](./ygdx/save_query.png)
-![qeury7](./ygdx/query_result.png)
+![qeury5](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/save_qr.png)
+![qeury6](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/save_query.png)
+![qeury7](/https://github.com/lsq/blogsr/tree/master/content/posts/ygdx/query_result.png)
