@@ -1,70 +1,91 @@
 baseURL = "https://lsq.github.io"
-languageCode = "en"
-DefaultContentLanguage = "zh"
-title = "Hugo blog"
-theme = "hugo-one"
-summaryLength = 10
-paginate = 9
-pygmentsCodeFences = true
-pygmentsCodefencesGuessSyntax = false
-pygmentsStyle = "monokailight"
-pygmentsOptions = ['linenos']
+languageCode = "zh-Hans"
+defaultContentLanguage = "zh"
+title = "lsq 的博客"
+theme = "dream"
+
+copyright = '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。<br /><br />背景使用了 <a href="https://www.pexels.com/zh-cn/" target="_blank">Pexels</a> 上 <a href="https://www.pexels.com/zh-cn/@minan1398" target="_blank">Min An</a> 拍摄的<a href="https://www.pexels.com/zh-cn/photo/1454794/" target="_blank">图片</a>。'
+
+googleAnalytics = "UA-98295641-1"
+
 disqusShortname = "lsq"
 
+enableRobotsTXT = true
+
+hasCJKLanguage = true
+
+# Paginate = 6
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# https://gohugo.io/news/0.60.0-relnotes/
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [params]
-  siteCreated = 2019
-  logo = "https://16pixel.github.io/cherry/images/logo.png"
+  background = "#fff"
+  backgroundImage = "/me/background.jpg"
+  linkColor = "seagreen"
+
+  # dark mode
+  # defaultDark = true
+  # backgroundDark = "#222"
+  backgroundImageDark = "/me/background.jpg"
+  darkLinkColor = "darkseagreen"
+  # darkNav = true
+  # dark404 = true
+
+  images = ["me/background.jpg"]
+
+  author = "lsq"
+  description = "lsq成长记录～"
+  avatar = "/me/yy.jpg"
+  headerTitle = "lsq的博客"
+  motto = "与其感慨路难行，不如马上出发。"
+  # categoriesLimitInHeader = 6 # deprecated
+  # headerBottomText = "" # deprecated
+
+  # footerBottomText = ""
+
+  rss = true
+
+  utterancesRepo = "lsq/lsq.github.io"
+
+  # valine = true
+  # LEANCLOUD_APP_ID = ""
+  # LEANCLOUD_APP_KEY = ""
+
+  email = "lsqypj@gmail.com"
+#  twitter = "g1eny0ung"
+#  facebook = "g1eny0ung"
+#  instagram = "g1eny0ung"
+  # mastodon = ""
+#  linkedin = "g1eny0ung"
+  github = "lsq"
+#  stackoverflow = "5676489/g1eny0ung"
+#  codepen = "g1eny0ung"
+
+  siteStartYear = 2011
+
+  favicon = "/favicon.ico"
+
+  highlightjs = true
+  # highlightjsCDN = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"
+  highlightjsExtraLanguages = ["clojure", "ocaml"]
+  highlightjsTheme = "tomorrow"
+  highlightjsThemeDark = "tomorrow-night"
 
   # search
-  search = true
-  [params.algolia]
-    index = "often9"
-    key = "23b12e7862db67f7211e1016361bbe1c"
-    appID = "2KA3KB1R4W"
-  # comment
-  comment = true
+  enableSearch = true
 
-  [params.utteranc]
-    enable = false
-    repo = "4ever9/blog"
+  # options
+  showSummaryCoverInPost = true
+  # hasTwitterEmbed = true
+  # reversePostAndAside = true
 
-  [params.disqus]
-    enable = false
-
-  [params.changyan]
-    # for china
-    enable = true
-    id = "cyu589A3K"
-    conf = "prod_3e8042045d9ef03868ebe3eaf105c134"
-
-[related]
-  threshold = 100
-  toLower = false
-  [related.indices]
-    name = "categories"
-    weight = 50
-
-[taxonomies]
-  tag                      = "tags"
-  series                   = "series"
-  category                 = "categories"
-
-[menu]
-  [[menu.main]]
-    name                   = "系列"
-    pre                    = "<i class='icon icon-post'></i>"
-    weight                 = -120
-    identifier             = "series"
-    url                    = "series/"
-  [[menu.main]]
-    name                   = "分类"
-    pre                    = "<i class='icon icon-category'></i>"
-    weight                 = -120
-    identifier             = "categories"
-    url                    = "categories/"
-  [[menu.main]]
-    name                   = "标签"
-    pre                    = "<i class='icon icon-tag'></i>"
-    weight                 = -120
-    identifier             = "tags"
-    url                    = "tags/"
+  [params.advanced]
+    customCSS = ["css/custom.css"]
+    customJS = []

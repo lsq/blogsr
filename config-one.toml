@@ -1,0 +1,70 @@
+baseURL = "https://lsq.github.io"
+languageCode = "en"
+DefaultContentLanguage = "zh"
+title = "Hugo blog"
+theme = "dream"
+summaryLength = 10
+paginate = 9
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = false
+pygmentsStyle = "monokailight"
+pygmentsOptions = ['linenos']
+disqusShortname = "lsq"
+
+[params]
+  siteCreated = 2019
+  logo = "https://16pixel.github.io/cherry/images/logo.png"
+
+  # search
+  search = true
+  [params.algolia]
+    index = "often9"
+    key = "23b12e7862db67f7211e1016361bbe1c"
+    appID = "2KA3KB1R4W"
+  # comment
+  comment = true
+
+  [params.utteranc]
+    enable = false
+    repo = "4ever9/blog"
+
+  [params.disqus]
+    enable = false
+
+  [params.changyan]
+    # for china
+    enable = true
+    id = "cyu589A3K"
+    conf = "prod_3e8042045d9ef03868ebe3eaf105c134"
+
+[related]
+  threshold = 100
+  toLower = false
+  [related.indices]
+    name = "categories"
+    weight = 50
+
+[taxonomies]
+  tag                      = "tags"
+  series                   = "series"
+  category                 = "categories"
+
+[menu]
+  [[menu.main]]
+    name                   = "系列"
+    pre                    = "<i class='icon icon-post'></i>"
+    weight                 = -120
+    identifier             = "series"
+    url                    = "series/"
+  [[menu.main]]
+    name                   = "分类"
+    pre                    = "<i class='icon icon-category'></i>"
+    weight                 = -120
+    identifier             = "categories"
+    url                    = "categories/"
+  [[menu.main]]
+    name                   = "标签"
+    pre                    = "<i class='icon icon-tag'></i>"
+    weight                 = -120
+    identifier             = "tags"
+    url                    = "tags/"
