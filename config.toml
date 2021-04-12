@@ -44,7 +44,8 @@ hasCJKLanguage = true
   description = "lsq成长记录～"
   avatar = "/me/pk.jpg"
   headerTitle = "lsq的博客"
-  motto = "与其感慨路难行，不如马上出发。"
+#motto = "与其感慨路难行，不如马上出发。"
+  motto = "世界经济史是一部基于假象和谎言的连续剧"
   # categoriesLimitInHeader = 6 # deprecated
   # headerBottomText = "" # deprecated
 
