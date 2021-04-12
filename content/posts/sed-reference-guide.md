@@ -1,7 +1,12 @@
 ---
 title: "Complete Sed Command Guide"
 date: Mon, 18 Nov 2019 18:04:57 +0800
-description: "Complete Sed Command Guide"
+#description: "Complete Sed Command Guide"
+#author: lsq
+avatar: /me/pk.jpg
+cover: /images/Sed_Command_Guide.jpg
+images:
+  - /images/Sed_Command_Guide.jpg
 draft: false
 tags: ["sed"]
 categories: ["linux command tools"]
@@ -418,7 +423,7 @@ quantifier is omitted, it is assumed to be zero. When the upper bound is
 omitted, it is assumed to be the infinity:
 
   Bracket notation   Shorthand   Description
-  ------------------ ----------- ------------------------------------------------------
+------------------ ----------- ------------------------------------------------------
   {,}                \*          zero, one or many occurrences of the preceding regex
   {,1}               ?           zero or one occurrence of the preceding regex
   {1,}               +           one or many occurrences of the preceding regex
@@ -457,7 +462,7 @@ the range:
 
     sed -n -e '1,5p' inputfile # print only lines 1 through 5
     sed -n -e '5,$p' inputfile # print from line 5 to the end of the file
-
+    
     sed -n -e '/home/217283.cloudwaysapps.com/wgnxdnqkza/public_html/,/systemd/p' inputfile # print from the first line matching the /home/217283.cloudwaysapps.com/wgnxdnqkza/public_html/ regular expression to the next line matching the /systemd/ regular expression.
 
 If the same line *number* is used both for the start and end address,
@@ -483,7 +488,7 @@ range will be reduced to one line:
          4  bd
          5  be
          6  bf
-
+    
     # I let you figure by yourself how many ranges are matched
     # by that second example:
     printf "%s\n" {a,b,c}{d,e,f} | cat -n | sed -ne '/d/,4p'
@@ -503,7 +508,7 @@ lines (except of course if there is not enough input data):
          5    be
          6    bf
          7    cd
-
+    
     printf "%s\n" {a,b,c}{d,e,f} | cat -n | sed -ne '4,/d/p'
          4    bd
          5    be
@@ -537,7 +542,7 @@ compare the output of those two commands:
     sed -n -e '/usb/{
     /daemon/p
     }' inputfile
-
+    
     sed -n -e '/usb.*daemon/p' inputfile
 
 By nesting commands in a block, we will select lines containing “usb”
@@ -595,12 +600,12 @@ options, or in the same expression, but separated by newlines or
 semi-colon:
 
     sed -n -e '5p' -e '5q' inputfile
-
+    
     sed -n -e '
       5p
       5q
     ' inputfile
-
+    
     sed -n -e '5p;5q' inputfile
 
 If you remember it, we’ve seen earlier we can group commands using
@@ -612,10 +617,10 @@ address twice:
       p
       q
     }' inputfile
-
+    
     # Which can be shortened as:
     sed '5{p;q;}' inputfile
-
+    
     # As a POSIX extension, some implementations makes the semi-colon before the closing bracket optional:
     sed '5{p;q}' inputfile
 
@@ -854,7 +859,7 @@ use it to move the first line of the input after the fifth one:
                             # back the content of line one into the
                             # pattern space
       }
-
+    
       1,5p                  # triggered on lines 2 through 5
                             # (not a typo! try to figure why this rule
                             # is NOT executed for line 1;)
@@ -907,7 +912,7 @@ hold command instead:
         x                   # switch again to get back lines 5 and 1 into
                             # the pattern space
       }
-
+    
       1,5p                  # triggered on lines 2 through 5
                             # (not a typo! try to figure why this rule
                             # is NOT executed for line 1;)
@@ -1023,7 +1028,7 @@ The canonical example being removing the last 5 lines from a file:
 
     cat -n inputfile | sed -En -e '
       1 { N;N;N;N }     # ensure the pattern space contains *five* lines
-
+    
       N                 # append a sixth line onto the queue
       P                 # Print the head of the queue
       D                 # Remove the head of the queue
@@ -1039,7 +1044,7 @@ As a second example, we could display input data on two columns:
                         # inconsistencies between GNU Sed and POSIX Sed
                         # when using N on the last line of input
                         # https://www.gnu.org/software/sed/manual/sed.html#N_005fcommand_005flast_005fline
-
+    
                         # Right pad the first field of the first line
                         # with spaces and discard rest of the line
      s/:.*\n/                    \n/
@@ -1236,10 +1241,10 @@ command. And gives us the solution to fix that program:
     # Classify user accounts based on the login program
     cat inputfile | sed -Ene '
       s/^/login=/
-
+    
       t classify # clear the "substitution flag"
       :classify
-
+    
       /nologin/s/^/type=SERV /
       /false/s/^/type=SERV /
       t print
