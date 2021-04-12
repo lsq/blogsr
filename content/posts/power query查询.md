@@ -1,10 +1,20 @@
 ---
 title: "Ruby Spider 人力资源网站和power query合并查询"
 date: Fri, 09 Apr 2021 09:37:25 +0800
-description: "power query查询"
+#description: "power query查询"
+author: lsq
+avatar: /me/yy.jpg
+cover: /img/xx.jpg
+images:
+  - /img/yy.jpg
 draft: false
-tags: ["spider", "ruby", "power query", "财务"]
-categories: ["office"]
+tags: 
+  - spider
+  - ruby
+  - power query
+  - 财务
+categories: 
+  - office
 ---
 ## 背景
 去年疫情影响，深圳市政府人力资源和社会保障局出台了“以工代训”补贴政策，这个项目我做完了后在一体化平台查询到有公示，但具体不清楚是哪天公示的（公示通过后次月月底前财政拨款）、哪天拨款到公司账户。大家都能想到的方法是去人力资源网站查询了，我也是普通人，也是这么干的，但是打开公示信息栏看到的是这样的，具体在哪在一百多批中的哪批呢. 
