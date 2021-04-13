@@ -8,7 +8,7 @@ cover: /images/vba_export_png.jpg
 images:
   - /images/vba_export_png.jpg
 draft: false
-tags: ["vba", "png", "emf"]
+tags: ["vba", "png", "emf", "pdf"]
 categories: ["office"]
 ---
 ## Intro
