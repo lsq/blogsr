@@ -1,5 +1,5 @@
 ---
-title: "Ruby Spider 人力资源网站和power query合并查询"
+title: "Ruby Spider 人力资源网站和Power Query合并查询"
 date: Fri, 11 Apr 2021 09:37:25 +0800
 #description: "power query查询"
 author: lsq
