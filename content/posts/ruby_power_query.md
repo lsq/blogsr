@@ -18,7 +18,7 @@ categories:
 ---
 ## 背景
 去年疫情影响，深圳市政府人力资源和社会保障局出台了“以工代训”补贴政策，这个项目我做完了后在一体化平台查询到有公示，但具体是哪天公示的（公示通过后次月月底前财政拨款）以及哪天能拨款到公司账户。大家都能想到的方法是去人力资源网站查询了，我也是这么干的，但是打开公示信息栏看到的是这样的，具体在哪在一百多批中的哪批呢. 
-![list](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/list.png)
+![list](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/list.png)
 常见做法有：
 
 1. 一个一个下载打开查找
@@ -40,11 +40,11 @@ categories:
 
  RubyInstaller可以在官网上下载，为方便更快下载，可以由[上海交通大学软件源镜像服务](https://mirrors.sjtug.sjtu.edu.cn/)提供所有镜像[rubyinstaller2](https://mirror.sjtu.edu.cn/github-release/oneclick/rubyinstaller2/releases/download/?mirror_intel_list)存档中下载，或者通过[rubyinstaller.cn](https://rubyinstaller.cn/downloads/)下载**Ruby+Devkit 2.7.X**或者**Ruby+Devkit 3.0.X**
 
-![rubyinstaller](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/rubyinstaller.png)
+![rubyinstaller](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/rubyinstaller.png)
 <!--
-<img src="https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/rubyinstaller.png" width="200px" />
-<img src="https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/rubyinstaller.png" style="height:200px" />
-<img src="https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/rubyinstaller.png" style="zoom:50%" />
+<img src="https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/rubyinstaller.png" width="200px" />
+<img src="https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/rubyinstaller.png" style="height:200px" />
+<img src="https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/rubyinstaller.png" style="zoom:50%" />
 or-->
 
 
@@ -72,7 +72,7 @@ gem install *.gem
 
 3. 安装aria2多线程加速下载工具
 
-aria2配置文件[下载地址](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/aria2-windows.conf)，配置文件可以参考[P3TERX/aria2.conf](https://github.com/P3TERX/aria2.conf)
+aria2配置文件[下载地址](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/aria2-windows.conf)，配置文件可以参考[P3TERX/aria2.conf](https://raw.githubusercontent.com/P3TERX/aria2.conf)
 
 编译参考[aria2-build-msys2](https://github.com/myfreeer/aria2-build-msys2)、[aria2-static-builds](https://github.com/q3aql/aria2-static-builds)、[Aria2-Pro-Core](https://github.com/P3TERX/Aria2-Pro-Core)
 
@@ -89,15 +89,15 @@ aria2c --conf-path=~/.aria2.conf
 
 主要是爬虫人力资源网站公示信息中包含“以工代训”链接，并打开链接下载公示表格
 
-代码用ruby写的，[下载链接](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/getFiles.rb)
+代码用ruby写的，[下载链接](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/getFiles.rb)
 ```shell
 ruby getFile.rb
 # 大概10s左右下载完
 ```
 
-![getFiles](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/getFiles.png)
+![getFiles](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/getFiles.png)
 
-![ruby](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/ruby.png)![aria2ng](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/aria2.png)![fileList](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/fileList.png)
+![ruby](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/ruby.png)![aria2ng](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/aria2.png)![fileList](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/fileList.png)
 
 #### Power Query 查询数据
 
@@ -126,18 +126,18 @@ in
 
 STEP **1**. 新建一个空白工作薄“公示查询”，打开并切换到《**数据**》标签页面，然后选择”**新建查询**“》”**其他源**“》”**空白查询**“，打开”**高级编辑器**“
 
-![qeury1](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/bl_query.png)
-![qeury2](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/blank_query1.png)
+![qeury1](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/bl_query.png)
+![qeury2](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/blank_query1.png)
 
 
 
 STEP **2**.全选并删除默认查询代码，然后粘贴**查询代码**，最后点击”**完成**“，就会出现查询结果，此步骤**注意**个改查询代码中的目录位置(**源**中的路径)
-![qeury3](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/query_code.png)
-![qeury4](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/query_process.png)
+![qeury3](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/query_code.png)
+![qeury4](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/query_process.png)
 
 
 
 STEP **3**.点击左上角“**关闭并上载**”下的**箭头**，选择“**关闭并上载至...**”选项，选择“**现有工作表**”，“**加载**”后就是最终结果。
-![qeury5](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/save_qr.png)
-![qeury6](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/save_query.png)
-![qeury7](https://github.com/lsq/blogsr/raw/master/content/posts/ygdx/query_result.png)
+![qeury5](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/save_qr.png)
+![qeury6](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/save_query.png)
+![qeury7](https://raw.githubusercontent.com/lsq/blogsr/master/content/posts/ygdx/query_result.png)
