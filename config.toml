@@ -41,7 +41,7 @@ hasCJKLanguage = true
   images = ["me/background.jpg"]
 
   author = "lsq"
-  description = "lsq成长记录～"
+  description = "lsq学习记录～"
   avatar = "/me/pk.jpg"
   headerTitle = "lsq的博客"
 #motto = "与其感慨路难行，不如马上出发。"
