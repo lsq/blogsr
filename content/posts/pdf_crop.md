@@ -16,6 +16,7 @@ categories: ["office"]
 2. Normally pdfcrop will be installed by the TeX system.
 3. https://superuser.com/questions/415707/export-excel-graphs-as-vector-graphics-files-e-g-svgs
 4. [briss/xltoolbox](https://tex.stackexchange.com/questions/17716/excel-chart-pdf-latex-but-need-to-remove-white-space)
+5. [Export Excel chart to SVG creates an empty file](https://stackoverflow.com/questions/65131924/export-excel-chart-to-svg-creates-an-empty-file)
 ```
 pdfcrop foo.pdf f.pdf
 gswin64c.exe -dNOPAUSE -sDEVICE=png16m -r600  -sOutputFile=foo.png o.pdf -dBATCH
