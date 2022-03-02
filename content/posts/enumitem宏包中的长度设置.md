@@ -4,9 +4,9 @@ date: Mon, 21 Feb 2022 15:36:04 +0800
 #description: "vba导出pdf或者png"
 author: lsq
 avatar: /me/pk.jpg
-cover: /images/python_get_objects.jpg
+cover: /images/Latex_Logo.png
 images:
-  - /images/python_get_objects.jpg
+  - /images/Latex_Logo.png
 draft: false
 tags: ["LaTex", "Tex", "enumitem"]
 categories: ["LaTex"]
