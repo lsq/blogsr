@@ -262,3 +262,81 @@ def BarItemClick(e):
 【答疑】
 
  保存Python插件时，会提示错误信息：“Could not add reference to assembly Kingdee.BOS.App”， 老有同学问，哎呀，报错了，会不会有问题呢？ 统一答复如下： 此错误提示可不必理会，因为我们只是在BOSIDE上进行Python插件的注册，而这段Python代码最终是在 服务端运行，BOSIDE属于客户端软件，BOSIDE所在目录下肯定不会包含服务端的组件，其提示缺少服务 端的组件是正常的，而在应用服务器上是包含了所有的组件的，所以等真正到了运行时，此Python插件不 会缺少任何平台组件，可以正常运行的
+ 
+ ### [Python 表单插件 执行SQL](https://vip.kingdee.com/article/119856062978967040)
+
+```python
+#【Python】【表单插件】执行SQL
+import clr
+clr.AddReference("mscorlib")
+clr.AddReference("Kingdee.BOS")
+clr.AddReference("Kingdee.BOS.Core")
+clr.AddReference("Kingdee.BOS.App")
+clr.AddReference("System.Data")
+from Kingdee.BOS import *
+from Kingdee.BOS.App.Data import *
+from Kingdee.BOS.Core.DynamicForm.PlugIn import *
+from Kingdee.BOS.Core.DynamicForm.PlugIn.Args import *
+from Kingdee.BOS.Util import *
+from System import *
+from System.Collections.Generic import *
+from System.Data import *
+
+def BarItemClick(e):
+	if (e.BarItemKey.Equals("tbExecuteStoreProcedure", StringComparison.OrdinalIgnoreCase)):
+		# 执行存储过程
+		procedureName = "P_Pur_Order"
+		sqlParameterList = List[SqlParam]()
+		sqlParameterList.Add(SqlParam("@P1", KDDbType.AnsiString, "CGDD"))
+		p2= SqlParam("@P2", KDDbType.AnsiString, "", ParameterDirection.InputOutput)
+		p2.Size = 200
+		sqlParameterList.Add(p2)
+		sqlParameterList.Add(SqlParam("@ReturnValue", KDDbType.Decimal, 0, ParameterDirection.ReturnValue))
+		returnParameterList = DBUtils.ExecuteStoreProcedure(this.Context, procedureName, sqlParameterList)
+		#msg = string.Join(";", returnParameterList.Select(o => o.Name + ":" + o.Value))
+		msg = "返回结果：" + ";".join((o.Name + ":" + o.Value.ToString()) for o in returnParameterList)
+		this.View.ShowMessage(msg)
+		return
+	if (e.BarItemKey.Equals("tbExecute", StringComparison.OrdinalIgnoreCase)):
+		# 执行SQL并返回受影响行数
+		sql = "UPDATE T_PUR_POORDER SET FCHANGEREASON=N'货物破损' WHERE FBILLNO=@BillNo"
+		sqlParameterList = List[SqlParam]()
+		sqlParameterList.Add(SqlParam("@BillNo", KDDbType.AnsiString, "CGDD000519"))
+		returnValue = DBUtils.Execute(this.Context, sql, sqlParameterList)
+		msg = "受影响行数：" + returnValue.ToString()
+		this.View.ShowMessage(msg)
+		return
+	if (e.BarItemKey.Equals("tbExecuteDataSet", StringComparison.OrdinalIgnoreCase)):
+		# 执行SQL并返回DataSet
+		sql = "SELECT * FROM T_PUR_POORDER WHERE FBILLNO LIKE @BillNo"
+		sqlParameterList = List[SqlParam]()
+		sqlParameterList.Add(SqlParam("@BillNo", KDDbType.AnsiString, "%CGDD%"))
+		ds = DBUtils.ExecuteDataSet(this.Context, sql, sqlParameterList)
+		idList = List[String]()
+		for row in ds.Tables[0].Rows:
+		    idList.Add(row["FID"].ToString())
+		msg = "满足条件的订单内码集合：" + ",".join(o for o in idList)
+		this.View.ShowMessage(msg)
+		return
+	if (e.BarItemKey.Equals("tbExecuteReader", StringComparison.OrdinalIgnoreCase)):
+		# 执行SQL并返回DataReader
+		sql = "SELECT * FROM T_PUR_POORDER WHERE FBILLNO LIKE @BillNo"
+		sqlParameterList = List[SqlParam]()
+		sqlParameterList.Add(SqlParam("@BillNo", KDDbType.AnsiString, "%CGDD%"))
+		reader = DBUtils.ExecuteReader(this.Context, sql, sqlParameterList)
+		idList = List[String]()
+		while reader.Read():
+		    idList.Add(reader["FID"].ToString())
+		reader.Close()
+		msg = "满足条件的订单内码集合：" + ",".join(o for o in idList)
+		this.View.ShowMessage(msg)
+		return
+	if (e.BarItemKey.Equals("tbExecuteScalar", StringComparison.OrdinalIgnoreCase)):
+		# 执行SQL并返回首行首列的值
+		sql = "SELECT COUNT(*) FROM T_PUR_POORDER WHERE FBILLNO LIKE @BillNo"
+		sqlParam = SqlParam("@BillNo", KDDbType.AnsiString, "%CGDD%");
+		orderCount = DBUtils.ExecuteScalar(this.Context, sql, 0, sqlParam)
+		msg = "满足条件的订单数量：" + orderCount.ToString();
+		this.View.ShowMessage(msg)
+		return
+```
