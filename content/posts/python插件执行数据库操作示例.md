@@ -340,3 +340,118 @@ def BarItemClick(e):
 		this.View.ShowMessage(msg)
 		return
 ```
+### 跨表单反写
+
+#### 应用场景
+
+物料下达PR上限，超过上限保存错误提示，并且在关闭、反关闭已下达PR相应减少、增加PR数量。
+
+```python
+#引入clr运行库
+import clr
+#添加对cloud插件开发的常用组件的引用
+clr.AddReference("Kingdee.BOS")
+clr.AddReference("Kingdee.BOS.Core")
+clr.AddReference("Kingdee.BOS.App")
+#【Python】【表单插件】执行SQL
+clr.AddReference("mscorlib")
+clr.AddReference("System.Data")
+from Kingdee.BOS import *
+from Kingdee.BOS.App.Data import *
+from Kingdee.BOS.Core import *
+from Kingdee.BOS.Core.DynamicForm.PlugIn import *
+from Kingdee.BOS.Core.DynamicForm.PlugIn.Args import *
+from Kingdee.BOS.Util import *
+from Kingdee.BOS.Core.Metadata import *
+from Kingdee.BOS.Core.Metadata.EntityElement import *
+from Kingdee.BOS.Core.Validation import *
+from Kingdee.BOS.Log import Logger
+from System import *
+#from System import DateTime
+from System.Collections.Generic import *
+from System.Data import *
+
+def BeforeSave(e):
+	rows=this.Model.GetEntryRowCount("FEntity");#获取单据体行数
+	#proPertiesList=''
+	for i in range(0, rows, 1):
+		rqOrg = this.Model.GetValue("FREQUIREORGID",i)["Id"]
+		rqMaterialId =  this.Model.GetValue("FMATERIALID",i)["Id"]
+		approQty =  this.Model.GetValue("FBASEUNITQTY",i)
+		#this.View.ShowMessage(str(rqMaterialId))
+		#rqOrg = dyobjectOrg["FNumber"]
+        # 获取属性列表
+		#for q in dyobjectOrg.DynamicObjectType.Properties:
+		#		proPertiesList = proPertiesList + ',' + str(q.Name);
+				#this.View.ShowMessage(str((proPertiesList)))
+		#		this.View.ShowMessage(str(dyobjectOrg["Id"]))
+		#sqlM = ("""/*dialect*/SELECT F_ORA_PRCONTROL FROM T_BD_MATERIALBASE WHERE FUSEORGID={0}  AND FMATERIALID={1} """).format(rqOrg,rqMaterialId)
+		#dsM = DBUtils.ExecuteDataSet(this.Context, sqlM)
+		#this.View.ShowMessage(str(type(dsM.Tables[0].Rows)))
+		#if dsM.Tables[0].Rows[0]["F_ORA_PRCONTROL"]:
+		sql = ("""/*dialect*/SELECT FNUMBER, F_ORA_PRCONTROL, F_ORA_PRLIMITS, F_ORA_PRQTY FROM T_BD_MATERIAL WHERE FUSEORGID={0}  AND FMATERIALID={1} """).format(rqOrg,rqMaterialId)
+		ds = DBUtils.ExecuteDataSet(this.Context, sql)
+		prMeNum =ds.Tables[0].Rows[0]["FNUMBER"]
+		prControl = ds.Tables[0].Rows[0]["F_ORA_PRCONTROL"]
+		prLimits = ds.Tables[0].Rows[0]["F_ORA_PRLIMITS"]
+		prQty = ds.Tables[0].Rows[0]["F_ORA_PRQTY"]
+		if prControl == '1':
+			if (approQty + prQty > prLimits):
+				this.View.ShowErrMessage("物料: " +str(prMeNum) +"采购上限是:" + str(prLimits)+"已下达PR数量:" + str(prQty)+",请检查PR数量")
+				e.Cancel = True
+		#this.View.ShowMessage(str(type(ds.Tables[0].Rows)))
+		#this.View.ShowMessage(str(type(ds.Tables[0].Rows[0])))
+		# 提取字段值
+		# this.View.ShowMessage(str(prLimits) + '/' + str(prQty))
+		
+		#dataSet = DBUtils.Execute(this.Context,"/*dialect*/ update T_PRD_PPBOMENTRY_Q set F_MAXEYE_WLSL=FNOPICKEDQTY-FREPICKEDQTY+FPRCDEFECTRETURNQTY")
+		#if this.Model.GetValue("FIssueType",i) != '7':
+		#	a = this.Model.GetValue("FNoPickedQty",i) - this.Model.GetValue("FRePickedQty",i) + this.Model.GetValue("FProcessDefectReturnQty",i);
+		#	this.Model.SetValue("F_maxeye_Wlsl",a,i);
+		#	n = DBUtils.Execute(this.Context,"/*dialect*/ update T_PRD_PPBOMENTRY_Q set F_MAXEYE_WLSL=FNOPICKEDQTY-FREPICKEDQTY+FPRCDEFECTRETURNQTY")
+		#	this.View.UpdateView("FA_DEPRADJUSTENTRY");
+#保存后事件
+#def AfterSave(e):
+# 操作事件
+def AfterDoOperation(e):
+	# 新增：6，修改：5，删除：3，保存：8，提交：9，撤销：87，审核：1，反审核：26
+   if (e.Operation.OperationId == 1) and (e.OperationResult.IsSuccess):
+	rows=this.Model.GetEntryRowCount("FEntity");#获取单据体行数
+	for i in range(0, rows, 1):
+		rqOrg = this.Model.GetValue("FREQUIREORGID",i)["Id"]
+		rqMaterialId =  this.Model.GetValue("FMATERIALID",i)["Id"]
+		approQty =  this.Model.GetValue("FBASEUNITQTY",i)
+		#this.View.ShowMessage(str(approQty))
+		sql = ("""/*dialect*/UPDATE T_BD_MATERIAL SET  F_ORA_PRQTY=F_ORA_PRQTY + {0}    WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
+		DBUtils.Execute(this.Context, sql)
+   if (e.Operation.OperationId == 26) and (e.OperationResult.IsSuccess):
+      rows=this.Model.GetEntryRowCount("FEntity");#获取单据体行数
+      for i in range(0, rows, 1):
+		rqOrg = this.Model.GetValue("FREQUIREORGID",i)["Id"]
+		rqMaterialId =  this.Model.GetValue("FMATERIALID",i)["Id"]
+		approQty =  this.Model.GetValue("FBASEUNITQTY",i)
+		#this.View.ShowMessage(str(approQty))
+		sql = ("""/*dialect*/UPDATE T_BD_MATERIAL SET  F_ORA_PRQTY=F_ORA_PRQTY - {0}    WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
+		DBUtils.Execute(this.Context, sql)
+def BarItemClick(e):
+	#if (e.BarItemKey.Equals("tbBillClose", StringComparison.OrdinalIgnoreCase)):
+	#tbBillUnClose
+	if (e.BarItemKey.Equals("tbBillClose", StringComparison.OrdinalIgnoreCase)):
+		rows=this.Model.GetEntryRowCount("FEntity");#获取单据体行数
+      		for i in range(0, rows, 1):
+			rqOrg = this.Model.GetValue("FREQUIREORGID",i)["Id"]
+			rqMaterialId =  this.Model.GetValue("FMATERIALID",i)["Id"]
+			approQty =  this.Model.GetValue("FBASEUNITQTY",i)
+			#this.View.ShowMessage(str(approQty))
+			sql = ("""/*dialect*/UPDATE T_BD_MATERIAL SET F_ORA_PRQTY=F_ORA_PRQTY - {0}    WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
+			DBUtils.Execute(this.Context, sql)
+	if (e.BarItemKey.Equals("tbBillUnClose", StringComparison.OrdinalIgnoreCase)):
+		rows=this.Model.GetEntryRowCount("FEntity");#获取单据体行数
+      		for i in range(0, rows, 1):
+			rqOrg = this.Model.GetValue("FREQUIREORGID",i)["Id"]
+			rqMaterialId =  this.Model.GetValue("FMATERIALID",i)["Id"]
+			approQty =  this.Model.GetValue("FBASEUNITQTY",i)
+			#this.View.ShowMessage(str(approQty))
+			sql = ("""/*dialect*/UPDATE T_BD_MATERIAL SET F_ORA_PRQTY = F_ORA_PRQTY + {0}  WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
+			DBUtils.Execute(this.Context, sql)		
+```
