@@ -262,8 +262,8 @@ def BarItemClick(e):
 【答疑】
 
  保存Python插件时，会提示错误信息：“Could not add reference to assembly Kingdee.BOS.App”， 老有同学问，哎呀，报错了，会不会有问题呢？ 统一答复如下： 此错误提示可不必理会，因为我们只是在BOSIDE上进行Python插件的注册，而这段Python代码最终是在 服务端运行，BOSIDE属于客户端软件，BOSIDE所在目录下肯定不会包含服务端的组件，其提示缺少服务 端的组件是正常的，而在应用服务器上是包含了所有的组件的，所以等真正到了运行时，此Python插件不 会缺少任何平台组件，可以正常运行的
- 
- ### [Python 表单插件 执行SQL](https://vip.kingdee.com/article/119856062978967040)
+
+### [Python 表单插件 执行SQL](https://vip.kingdee.com/article/119856062978967040)
 
 ```python
 #【Python】【表单插件】执行SQL
@@ -340,11 +340,16 @@ def BarItemClick(e):
 		this.View.ShowMessage(msg)
 		return
 ```
+
 ### 跨表单反写
 
 #### 应用场景
 
 物料下达PR上限，超过上限保存错误提示，并且在关闭、反关闭已下达PR相应减少、增加PR数量。
+
+#### 实现步骤
+
+BOS打开采购申请单，注册表单Python插件，代码如下：
 
 ```python
 #引入clr运行库
@@ -389,7 +394,7 @@ def BeforeSave(e):
 		#dsM = DBUtils.ExecuteDataSet(this.Context, sqlM)
 		#this.View.ShowMessage(str(type(dsM.Tables[0].Rows)))
 		#if dsM.Tables[0].Rows[0]["F_ORA_PRCONTROL"]:
-		sql = ("""/*dialect*/SELECT FNUMBER, F_ORA_PRCONTROL, F_ORA_PRLIMITS, F_ORA_PRQTY FROM T_BD_MATERIAL WHERE FUSEORGID={0}  AND FMATERIALID={1} """).format(rqOrg,rqMaterialId)
+		sql = ("""/*dialect*/SELECT a.FNUMBER, b.F_ORA_PRCONTROL, b.F_ORA_PRLIMITS, b.F_ORA_PRQTY FROM T_BD_MATERIAL a INNER JOIN T_BD_MATERIALPLAN b ON a.FMATERIALID=b.FMATERIALID  WHERE a.FUSEORGID={0}  AND a.FMATERIALID={1} """).format(rqOrg,rqMaterialId)
 		ds = DBUtils.ExecuteDataSet(this.Context, sql)
 		prMeNum =ds.Tables[0].Rows[0]["FNUMBER"]
 		prControl = ds.Tables[0].Rows[0]["F_ORA_PRCONTROL"]
@@ -399,6 +404,8 @@ def BeforeSave(e):
 			if (approQty + prQty > prLimits):
 				this.View.ShowErrMessage("物料: " +str(prMeNum) +"采购上限是:" + str(prLimits)+"已下达PR数量:" + str(prQty)+",请检查PR数量")
 				e.Cancel = True
+		#nsql = ("""/*dialect*/UPDATE T_BD_MATERIALPLAN SET  F_ORA_PRQTY= {0}    WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(999,rqOrg,rqMaterialId)
+		#DBUtils.Execute(this.Context, nsql)
 		#this.View.ShowMessage(str(type(ds.Tables[0].Rows)))
 		#this.View.ShowMessage(str(type(ds.Tables[0].Rows[0])))
 		# 提取字段值
@@ -422,7 +429,7 @@ def AfterDoOperation(e):
 		rqMaterialId =  this.Model.GetValue("FMATERIALID",i)["Id"]
 		approQty =  this.Model.GetValue("FBASEUNITQTY",i)
 		#this.View.ShowMessage(str(approQty))
-		sql = ("""/*dialect*/UPDATE T_BD_MATERIAL SET  F_ORA_PRQTY=F_ORA_PRQTY + {0}    WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
+		sql = ("""/*dialect*/UPDATE T_BD_MATERIALPLAN SET  F_ORA_PRQTY=F_ORA_PRQTY + {0}    WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
 		DBUtils.Execute(this.Context, sql)
    if (e.Operation.OperationId == 26) and (e.OperationResult.IsSuccess):
       rows=this.Model.GetEntryRowCount("FEntity");#获取单据体行数
@@ -431,7 +438,7 @@ def AfterDoOperation(e):
 		rqMaterialId =  this.Model.GetValue("FMATERIALID",i)["Id"]
 		approQty =  this.Model.GetValue("FBASEUNITQTY",i)
 		#this.View.ShowMessage(str(approQty))
-		sql = ("""/*dialect*/UPDATE T_BD_MATERIAL SET  F_ORA_PRQTY=F_ORA_PRQTY - {0}    WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
+		sql = ("""/*dialect*/UPDATE T_BD_MATERIALPLAN SET  F_ORA_PRQTY=F_ORA_PRQTY - {0}    WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
 		DBUtils.Execute(this.Context, sql)
 def BarItemClick(e):
 	#if (e.BarItemKey.Equals("tbBillClose", StringComparison.OrdinalIgnoreCase)):
@@ -443,7 +450,7 @@ def BarItemClick(e):
 			rqMaterialId =  this.Model.GetValue("FMATERIALID",i)["Id"]
 			approQty =  this.Model.GetValue("FBASEUNITQTY",i)
 			#this.View.ShowMessage(str(approQty))
-			sql = ("""/*dialect*/UPDATE T_BD_MATERIAL SET F_ORA_PRQTY=F_ORA_PRQTY - {0}    WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
+			sql = ("""/*dialect*/UPDATE T_BD_MATERIALPLAN SET F_ORA_PRQTY=F_ORA_PRQTY - {0}    WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
 			DBUtils.Execute(this.Context, sql)
 	if (e.BarItemKey.Equals("tbBillUnClose", StringComparison.OrdinalIgnoreCase)):
 		rows=this.Model.GetEntryRowCount("FEntity");#获取单据体行数
@@ -452,6 +459,18 @@ def BarItemClick(e):
 			rqMaterialId =  this.Model.GetValue("FMATERIALID",i)["Id"]
 			approQty =  this.Model.GetValue("FBASEUNITQTY",i)
 			#this.View.ShowMessage(str(approQty))
-			sql = ("""/*dialect*/UPDATE T_BD_MATERIAL SET F_ORA_PRQTY = F_ORA_PRQTY + {0}  WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
-			DBUtils.Execute(this.Context, sql)		
+			sql = ("""/*dialect*/SELECT a.FNUMBER, b.F_ORA_PRCONTROL, b.F_ORA_PRLIMITS, b.F_ORA_PRQTY FROM T_BD_MATERIAL a INNER JOIN T_BD_MATERIALPLAN b ON a.FMATERIALID=b.FMATERIALID  WHERE a.FUSEORGID={0}  AND a.FMATERIALID={1} """).format(rqOrg,rqMaterialId)
+			ds = DBUtils.ExecuteDataSet(this.Context, sql)
+			prMeNum =ds.Tables[0].Rows[0]["FNUMBER"]
+			prControl = ds.Tables[0].Rows[0]["F_ORA_PRCONTROL"]
+			prLimits = ds.Tables[0].Rows[0]["F_ORA_PRLIMITS"]
+			prQty = ds.Tables[0].Rows[0]["F_ORA_PRQTY"]
+			if prControl == '1':
+				if (approQty + prQty > prLimits):
+					#this.View.ShowErrMessage("物料: " +str(prMeNum) +"采购上限是:" + str(prLimits)+"已下达PR数量:" + str(prQty)+",请检查PR数量")
+					#e.Cancel = True					
+					raise Exception("物料: " +str(prMeNum) +"采购上限是:" + str(prLimits)+"已下达PR数量:" + str(prQty)+",请检查PR数量")
+			addsql = ("""/*dialect*/UPDATE T_BD_MATERIALPLAN SET F_ORA_PRQTY = F_ORA_PRQTY + {0}  WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
+			DBUtils.Execute(this.Context, addsql)			
 ```
+
