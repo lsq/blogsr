@@ -474,3 +474,104 @@ def BarItemClick(e):
 			DBUtils.Execute(this.Context, addsql)			
 ```
 
+### 下拉列表根据场景增减枚举值
+
+#### 应用场景
+
+生产订单加工类型有多种时，根据生产订单的单据类型（组织委托加工/返工），选择各单据类型下特有加工类型。
+
+单据类型切换后绑定数据。因为单据类型切换会使得整个页面刷新重建，因为抓取单据类型变更事件不能 使用DataChanged事件，可以使用AfterBindData事件。具体可参考：[二开案例.表单插件.单据类型切换后绑定数据](https://vip.kingdee.com/article/236811714744663808?productLineId=1)
+
+[实施过程中动态控制枚举项加载的方法](https://vip.kingdee.com/article/2849?productLineId=1)
+
+[二开案例.单据插件.设置单据类型可选项](https://vip.kingdee.com/article/203929343053833472?productLineId=1)
+
+#### 实现步骤
+
+BOS打开生产订单注册表单插件，代码如下：
+
+```python
+import clr
+clr.AddReference("Kingdee.Bos")
+from Kingdee.BOS import LocaleValue
+from Kingdee.BOS.Core.Metadata import EnumItem
+from Kingdee.BOS.Core.DynamicForm.PlugIn.ControlModel import ComboFieldEditor
+from System.Collections.Generic import *
+from System import DateTime
+
+def OnLoad(e):
+    if DateTime.Today.Year <= 2202:
+        #billTypeField = this.Model.BusinessInfo.GetBillTypeField()
+        #billTypeField = this.Model.GetValue("FBillType")
+        proPertiesList = ''
+        billTypeField = this.View.Model.GetValue("FBillType")
+        if billTypeField is not  None:
+              for q in billTypeField.DynamicObjectType.Properties:
+                    proPertiesList = proPertiesList + ',' + str(q.Name);
+          #this.View.ShowMessage(str((proPertiesList)))
+            #this.View.ShowMessage(billTypeField["Name"].ToString())
+        #this.View.ShowMessage(str(type(billTypeField.["Name"].ToString())))
+        
+        # ,Id,MultiLanguageText,Name,Number 
+        #this.View.ShowMessage(billTypeField["Number"].ToString())
+        billTypeNumber = billTypeField["Number"].ToString()
+        
+        comboField = this.View.BusinessInfo.GetField("F_ora_Combo")
+        enumObject = comboField.EnumObject
+        
+        itemList = enumObject["Items"]
+        
+        newList = List[EnumItem]()
+       
+        hasSpaceItem = 0
+        isMustInput = bool(comboField.IsMustInput())
+        if not isMustInput:
+            spaceItem = EnumItem()
+            spaceItem.Seq = hasSpaceItem
+            spaceItem.Value = ""
+            spaceItem.Caption = LocaleValue("", this.View.Context.UserLocale.LCID)
+            newList.Add(spaceItem)
+            hasSpaceItem += 1
+        for item in itemList:
+            if billTypeNumber == "SCDD07_SYS":
+                if str(item["Value"]) == '2' or str(item["Value"]) == '3':
+                    continue
+                else:
+                    newItem = EnumItem()
+                    newItem.Seq = int(item["Seq"]) + hasSpaceItem
+                    newItem.Value = str(item["Value"])
+                    newItem.Caption = item["Caption"]
+                    newList.Add(newItem)
+            if billTypeNumber == "SCDD02_SYS":
+                if str(item["Value"]) == '1' or str(item["Value"]) == '4' or str(item["Value"]) == '5':
+                    continue
+                else:
+                    newItem = EnumItem()
+                    newItem.Seq = int(item["Seq"]) + hasSpaceItem
+                    newItem.Value = str(item["Value"])
+                    newItem.Caption = item["Caption"]
+                    newList.Add(newItem)
+        # 获取fieldEditor来设置下拉的选项列表
+        fieldEditor = this.View.GetControl("F_ora_Combo")
+        fieldEditor.SetComboItems(newList)
+ 
+def BeforeSave(e):
+    if DateTime.Today.Year <= 2202:
+        processingChargeType = this.Model.GetValue("F_ora_Combo")
+        #this.View.ShowMessage(str(processingChargeType))
+        #this.View.ShowMessage("|" +str(processingChargeType) + "|")
+        if processingChargeType.strip() ==  '':
+        #this.View.ShowMessage(str(type(processingChargeType)))
+        #	this.View.ShowMessage("|" +str(processingChargeType) + "|")
+        #else:
+            raise Exception("加工类型必填，不能为空！")
+            e.Cancel = True
+#def DataChanged(e):
+#	billTypeField = this.Model.BusinessInfo.GetBillTypeField()
+ #	if billTypeField == None:
+ #		return
+ #	if (e.Field.Key == billTypeField.Key):
+ ##		billTypeObjs = this.Model.GetValue(billTypeField.Key)
+ #		if (billTypeObjs is not None):
+ #			this.View.OpenParameter.SetCustomParameter("jac_defalutBillTypeId",billTypeObjs[0].ToString())
+```
