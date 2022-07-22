@@ -740,3 +740,90 @@ class ValidateBillDate(AbstractValidator):
 				DBUtils.Execute(this.Context, addsql)				
 ```
 
+BOS操作列表，“撤消/反审核”-->“其他控制”-->“服务插件”（撤消扣减数量）
+
+```python
+#引入clr运行库
+import clr
+#添加对cloud插件开发的常用组件的引用
+clr.AddReference("Kingdee.BOS")
+clr.AddReference("Kingdee.BOS.Core")
+clr.AddReference("Kingdee.BOS.App")
+#【Python】【表单插件】执行SQL
+clr.AddReference("mscorlib")
+clr.AddReference("System.Data")
+from Kingdee.BOS import *
+from Kingdee.BOS.App.Data import *
+from Kingdee.BOS.Core import *
+from Kingdee.BOS.Core.DynamicForm.PlugIn import *
+from Kingdee.BOS.Core.DynamicForm.PlugIn.Args import *
+from Kingdee.BOS.Util import *
+from Kingdee.BOS.Core.Metadata import *
+from Kingdee.BOS.Core.Metadata.EntityElement import *
+from Kingdee.BOS.Core.Validation import *
+from Kingdee.BOS.Log import Logger
+from System import *
+#from System import DateTime
+from System.Collections.Generic import *
+from System.Data import *
+
+def OnPreparePropertys(e):
+	e.FieldKeys.Add("FBaseUnitQty")
+	e.FieldKeys.Add("FREQUIREORGID")
+	e.FieldKeys.Add("FMaterialId")
+def AfterExecuteOperationTransaction(e):
+	for entity in e.DataEntitys:
+		#atreeEntity=bill["ReqEntry"]
+		#treeEntity=bill["Entity"]
+		## approQty = bill.DataEntity["BaseReqQty"];
+		#billdate=bill.DataEntity["Date"]
+		#minDate=DateTime.Now.AddDays(-30)
+		#maxDate=DateTime.Now.AddDays(+30)
+		#err = ''
+		#for item in bill.DynamicObjectType.Properties:
+		#   err = str(err) + str(item.Name)
+		#this.View.ShowErrMessage("errInfo: "  + str(err))
+		#for row in item:	
+			# for p in item.DynamicObjectType.Properties:
+				#proQty = item["aApproveQty"]				
+		#if(101  > 100 ):
+		entry = entity["ReqEntry"]
+		for bill in entry:
+			approQty = bill["FBaseUnitQty"];
+			rqOrg = bill["RequireOrgId"]["Id"]
+			#rqOrgId = rqOrg["Id"]
+			#rqMaterialId =  this.Model.GetValue("FMATERIALID",i)["Id"]
+			rqMaterialId = bill["MaterialId"]["Id"]
+			#approQty =  this.Model.GetValue("FBASEUNITQTY",i)
+			#this.View.ShowMessage(str(approQty))
+			sql = ("""/*dialect*/SELECT a.FNUMBER, b.F_ORA_PRCONTROL, b.F_ORA_PRLIMITS, b.F_ORA_PRQTY FROM T_BD_MATERIAL a INNER JOIN T_BD_MATERIALPLAN b ON a.FMATERIALID=b.FMATERIALID  WHERE a.FUSEORGID={0}  AND a.FMATERIALID={1} """).format(rqOrg,rqMaterialId)
+			ds = DBUtils.ExecuteDataSet(this.Context, sql)
+			prMeNum =ds.Tables[0].Rows[0]["FNUMBER"]
+			prControl = ds.Tables[0].Rows[0]["F_ORA_PRCONTROL"]
+			prLimits = ds.Tables[0].Rows[0]["F_ORA_PRLIMITS"]
+			prQty = ds.Tables[0].Rows[0]["F_ORA_PRQTY"]
+			
+			#billId=str(bill["Id"])
+			#errorInf = str(treeEntity)
+			#if prControl == '1':
+			#	if (approQty + prQty > prLimits):
+					#this.View.ShowErrMessage("物料: " +str(prMeNum) +"采购上限是:" + str(prLimits)+"已下达PR数量:" + str(prQty)+",请检查PR数量")
+					#e.Cancel = True					
+			#		raise Exception("物料: " +str(prMeNum) +"采购上限是:" + str(prLimits)+"已下达PR数量:" + str(prQty)+",请检查PR数量")
+					# 出错的字段key，可以为空/
+					# 出错的字段key，可以为空/
+					# 出错的数据包在全部数据包中的顺序/
+					# 出错的数据行在全部数据行中的顺序，如果校验基于单据头，此为0/
+					# 错误编码，可以任意设定一个字符，主要用于追查错误来源
+					# 错误的详细提示信息
+					# 错误的简明提示信息
+					# 错误级别：警告、错误...
+					#errorInfo=ValidationErrorInfo("",billId,bill.DataEntityIndex,bill.RowIndex,billId, "物料: " +str(prMeNum) +"采购上限是:" + str(prLimits)+"已下达PR数量:" + str(prQty)+",请检查PR数量","",ErrorLevel.Error)
+					#validateContext.AddError(None,errorInfo)
+				#else:
+			#		addsql = ("""/*dialect*/UPDATE T_BD_MATERIALPLAN SET F_ORA_PRQTY = F_ORA_PRQTY + {0}  WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
+			#		DBUtils.Execute(this.Context, addsql)				
+			#else:
+			addsql = ("""/*dialect*/UPDATE T_BD_MATERIALPLAN SET F_ORA_PRQTY = F_ORA_PRQTY - {0}  WHERE FUSEORGID={1}  AND FMATERIALID={2} """).format(approQty,rqOrg,rqMaterialId)
+			DBUtils.Execute(this.Context, addsql)	
+```
