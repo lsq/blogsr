@@ -170,5 +170,45 @@ using Kingdee.BOS.Core.List.PlugIn;
    this.ListView.SelectedRowsInfo[0].DataRow
    ```
 
-   
+### 示例
+
+#### 字段锁定
+
+```python
+import clr
+clr.AddReference('mscorlib')
+clr.AddReference('Kingdee.BOS.Core')
+from System import *
+from Kingdee.BOS.Core.DynamicForm.PlugIn.ControlModel import *
+
+def  AfterBindData(e):
+	this.View.GetFieldEditor("F_ora_PRQty", 0).Enabled = False
+```
+
+判断单据是否新增、复制新增
+
+```python
+import clr
+clr.AddReference('mscorlib')
+clr.AddReference('Kingdee.BOS.Core')
+from System import *
+from Kingdee.BOS.Core.DynamicForm.PlugIn.ControlModel import *
+
+
+def OnLoad(e):
+	id = str(this.View.Model.DataObject[0])
+	#this.View.ShowMessage("新增success!--" + str(id))
+	if id == '' or id == '0':
+		this.View.ShowMessage("新增success!")
+		
+def  CreateNewData(e):
+	IsNewData = True
+	if IsNewData :
+		this.View.ShowMessage("新增成功！")
+		
+def  AfterCopyData(e):
+	IsCopyData = True
+	if IsCopyData :
+		this.View.ShowMessage("Copy 成功！")
+```
 
