@@ -33,7 +33,7 @@ categories: ["BOS"]
 **
 
 - **Context:上下文对象**
-
+```python
   this.Context.UserId;#当前用户ID
   this.Context.UserName;#当前用户名称
   this.Context.UserPhone;#当前用户手机号
@@ -43,11 +43,11 @@ categories: ["BOS"]
   this.Context.DataCenterNumber;#当前数据中心编码
   this.Context.DataCenterName;#当前数据中心名称
   this.Context.IpAddress;#客户端本机网络信息:IP、MAC等
-
+```
 - **View:视图层对象,**可理解为当前界面,界面类插件特有，服务类的插件没有这个，View能为开发提供很多特有的功能。
 
   **①View的常用属性**
-
+```python
   this.View.BillBusinessInfo;#单据的业务逻辑元数据，元数据包含的信息很多,下面列了一下常用的信息
   this.View.BillBusinessInfo.GetBillNoField().FieldName;#单据编号字段名
   this.View.BillBusinessInfo.GetBillStatusField().FieldName;#单据状态字段名
@@ -57,24 +57,22 @@ categories: ["BOS"]
   this.View.BillBusinessInfo.GetEntity("FBillHead").TableName;#单据头表名
   this.View.BillBusinessInfo.GetEntity("实体标识").TableName;#实体主表名
   this.View.BillBusinessInfo.GetEntity("实体标识").SplitTables;#实体所有拆分表
-
+```
   \#****************************************************************************************************
-
+```python
   this.View.OpenParameter;#表单入口参数
   this.View.OpenParameter.Status;#当前界面状态:0,新增;1,查看;2,修改;
   this.View.OpenParameter.GetCustomParameter("参数标识");#获取单据打开传入的参数
-
+```
   \#****************************************************************************************************
-
+```python
   this.View.ParentFormView;#获取父页面的View
   this.View.ParentFormView.BillBusinessInfo.GetForm().Id;#父页面的FormId,用来判断单据是从哪里进来的
-
+```
   **②View的常用方法**
-
+```python
   this.View.GetFormTitle();#获取单据标题
-  this.View.SetFormTitle(LocaleValue("新标题"));#修改单据标题**
-**
-
+  this.View.SetFormTitle(LocaleValue("新标题"));#修改单据标题
   this.View.GetFormOperation("操作代码");#获取单据的一个操作实例对象
   this.View.InvokeFormOperation("操作代码");#触发单据的某个操作:保存、提交、审核、关闭 等!
   this.View.GetControl[控件类]("控件标识");#获取单据上的控件:按钮、菜单等,可用来设置控件的状态(可见性，锁定性等)
@@ -82,22 +80,19 @@ categories: ["BOS"]
   \#触发实体服务规则，下面2行代码
   obj=BOSActionExecuteContext(this.View);
   this.View.RuleContainer.RaiseDataChanged("字段标识", 字段所在实体行数据包,obj);#触发实体服务规则
-
   \#显示3种提示信息
   this.View.ShowMessage("绿色背景提示信息");#显示正常提示信息
   this.View.ShowWarnningMessage("黄色背景提示信息");#显示警告提示信息
   this.View.ShowErrMessage("红色背景提示信息");#显示错误提示信息
 
   \#刷新界面数据，修改实体数据包后需要刷新重新读取，必须传标识，不建议粗暴刷新整个单据
-
   this.View.UpdateView("字段标识/单据体标识");#刷新界面数据**
-**
 
+```
 - **Model:单据数据模型,很重要，单据的实体数据包获取从这里开始，结合上1篇所讲的实体数据包。**
-
+```python
   this.View.Model;#单据数据模型,很重要，单据的实体数据包获取从这里开始，结合上文
-  **this.View.Model.DataObject;**#单据的完整数据包，相当于前面讲的单据头实体数据包
-
+  this.View.Model.DataObject;**#单据的完整数据包，相当于前面讲的单据头实体数据包
   this.View.Model.GetEntryCurrentRowIndex("单据体标识");#获取单据体当前焦点行号
   this.View.Model.GetEntryRowCount("单据体标识");#获取单据体行数
   this.View.Model.CreateNewEntryRow("单据体标识");#为单据体新增一行
@@ -105,17 +100,13 @@ categories: ["BOS"]
   this.View.Model.InsertEntryRow("单据体标识", i);#在第i行前插入1行
   this.View.Model.DeleteEntryRow("单据体标识", i);#删除第i行
   this.View.Model.DeleteEntryData("单据体标识");#清空整个单据体数据
-
   \#获取第x行(单据头不传x)某字段的值，不同字段类型返回不同类型数据，参考[第3篇](https://vip.kingdee.com/article/335071759478985984?productLineId=1)讲解
-
   this.View.Model.GetValue("字段标识",x);
-
   \#更新第x行(单据头不传x)某字段的值，不同字段类型赋值不同类型数据，参考第3篇讲解
-
   this.View.Model.SetValue("字段标识",x,字段值);
   this.View.Model.SetItemValueByID("字段标识","id",x);#用资料内码id更新第x行资料字段的值
   this.View.Model.SetItemValueByNumber("字段标识","id",x);#用资料编码更新第x行资料字段的值
-
+```
 上面对表单插件常用的一些属性和方法做了一下介绍，其实还有很多，这里篇幅有限，也列举不完，用得最多的基本就在这里了，我们可以发现，**除了第3篇将的实体数据包操作之外，在表单插件中，我们有另外的方法对单据的数据进行操作**，**需要注意的是，表单插件中的这些方法使用的都是标识，而不是绑定实体属性名了**，当然，**在表单插件中实体数据包操作同样适用，并且用的时候也很多，不要觉得表单插件这些方法便捷好理解，就"捡了芝麻丢了西瓜哦！"。![img](https://vipfront.s3.cn-north-1.amazonaws.com.cn/emotion/define/63.gif)**
 
 ## **三、新建一个表单插件** 
