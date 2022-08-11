@@ -293,3 +293,21 @@ def DataChanged(e):
 		this.View.ShowMessage(msg);
 ```
 
+#### 表单插件表单信息框提示
+
+```python
+def BarItemClick(e):
+#if条件判断，当点击YDIE_ tbGetSetValue这个按钮时候触发
+	if (e.BarItemKey == "tbGetValue"):
+		opResult = OperationResult();
+		ropResult = OperateResult()
+		proPertiesList = ''
+		
+		ropResult.Name = "hello，lsq，操作成功，信息提示成功"
+		opResult.OperateResult.Add(ropResult)
+		#for p in dir(ropResult.OperateResult):
+		#	proPertiesList = proPertiesList + ',' + str(p);
+		#this.View.ShowMessage(str(type(opResult.OperateResult)))
+		#this.View.ShowMessage(proPertiesList)
+		this.View.ShowOperateResult(opResult.OperateResult)
+```
