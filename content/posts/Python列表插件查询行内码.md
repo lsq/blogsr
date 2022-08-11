@@ -297,6 +297,12 @@ from Kingdee.BOS.DataEntity import *
 from Kingdee.BOS.Core.Bill import *
 from Kingdee.BOS.Core.DynamicForm.PlugIn import *
 from Kingdee.BOS.Core.DynamicForm.PlugIn.ControlModel import *
+from Kingdee.BOS.Util import *
+from Kingdee.BOS.Core.Metadata import *
+from Kingdee.BOS.Core.Metadata.EntityElement import *
+from Kingdee.BOS.Core.Validation import *
+from Kingdee.BOS.Log import Logger
+
 from System import *
 from System.Data import *
 from Kingdee.BOS.App.Data import *
@@ -309,7 +315,7 @@ from Kingdee.BOS.ServiceHelper import *
 #著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 def BarItemClick(e):
 	if e.BarItemKey == 'tb_list':
-         pkIds = List[object]()
+         	pkIds = List[object]()
 		#fentryid = ''
 		fids=''
 		proPertiesList=''
@@ -317,6 +323,7 @@ def BarItemClick(e):
            		 this.View.ShowMessage("没有选择任何数据，请先选择！")
            		 return
 		a = this.ListView.SelectedRowsInfo #获取选中行
+		billNos = ''
 		#this.View.ShowMessage(str(type(a)))
 		for i in range(len(a)):
 			# 单据体内码
@@ -329,6 +336,7 @@ def BarItemClick(e):
 			fid = a[i].PrimaryKeyValue
 			fids = fids + '/' + str(fid)
 			pkIds.Add(fid)
+			billNos = billNos + ',' + str(a[i].BillNo)
 		#this.View.ShowMessage(fids) # 调试
 		# 二开案例.列表插件.列表调用保存操作
         # https://vip.kingdee.com/article/139314926954577664
@@ -338,7 +346,7 @@ def BarItemClick(e):
                 #// 修改采购订单的变更原因
                 #dataObject["ChangeReason"] = "666";
             #}
-         formID=this.View.BillBusinessInfo.GetForm().Id;
+        	formID=this.View.BillBusinessInfo.GetForm().Id;
 		meta = MetaDataServiceHelper.Load(this.Context, formID);
 		billObjects=BusinessDataServiceHelper.Load(this.Context, pkIds.ToArray(), meta.BusinessInfo.GetDynamicObjectType());
 		#saveRslt=BusinessDataServiceHelper.Save(this.Context, meta.BusinessInfo,billObjects , None,"Save");
@@ -379,17 +387,36 @@ def BarItemClick(e):
 		#	j["ReqQty"] = 666
 			#for q in
 		# https://vip.kingdee.com/article/33705			
-		this.View.ShowMessage(str((billNo)))
+		#this.View.ShowMessage(str((billNo)))
 		#this.View.ShowMessage(str((proPertiesList)))
 		#https://vip.kingdee.com/article/158234477305916928
 		#saveRslt = BusinessDataServiceHelper.Save(this.Context, this.View.BillBusinessInfo, billObjects, None, "Save")
 		#saveRslt = BusinessDataServiceHelper.Save(this.Context, this.View.BillBusinessInfo, billObjects, None, "Save")
-		saveRslt=BusinessDataServiceHelper.Save(this.Context, meta.BusinessInfo,billObjects , None,"Save");
+		saveRslt=BusinessDataServiceHelper.Save(this.Context, meta.BusinessInfo,billObjects );
 		#raise Exception("问题出问题了，请打开单据检查单据字段")
-		if (saveRslt == True):
-          		this.View.ShowMessage("保存成功！")
-         else:
-           		this.View.ShowMessage("出错，保存不成功！")
+		if (saveRslt.IsSuccess == True):
+          		#this.View.ShowMessage("单据" + billNos + "保存成功！")
+          		this.View.ShowMessage("单据<" + billNo + ">保存成功！")
+        	else:
+           		FormatOperateResultValidationInfo(saveRslt)
+           		this.View.ShowOperateResult(saveRslt.OperateResult)
+def FormatOperateResultValidationInfo(result):
+    if (result.ValidationErrors == None or result.ValidationErrors.Count == 0):
+        return
+    #this.View.ShowMessage(str(type(result)))
+    collection = result.OperateResult;
+    for errorInfo in result.ValidationErrors:
+        rs = OperateResult()
+        rs.PKValue = errorInfo.BillPKID
+        rs.RowIndex = errorInfo.RowIndex
+        rs.Name = errorInfo.Title
+        rs.SuccessStatus = False
+        rs.Message = errorInfo.Message
+        if errorInfo.Level == ErrorLevel.Warning :
+        	rs.MessageType =  MessageType.Warning
+        else:        	
+		rs.MessageType = MessageType.FatalError
+        collection.Add(rs);
 ```
 
 ### 参考
