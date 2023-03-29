@@ -311,3 +311,4 @@ def BarItemClick(e):
 		#this.View.ShowMessage(proPertiesList)
 		this.View.ShowOperateResult(opResult.OperateResult)
 ```
+
