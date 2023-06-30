@@ -50,7 +50,7 @@ if ! [ $NEW_VERSION = $CUR_VERSION ]; then
       | tr -d \" \
       | xargs -I {} curl -sOL {}
 
-    TARBALL="$(find . -name "hugo_extended*Windows-${ARCHES[$ARCH]}.zip" 2>/dev/null)"
+    TARBALL="$(find . -name "hugo_extended*windows-${ARCHES[$ARCH]}.zip" 2>/dev/null)"
     echo Expanding Tarball
     unzip $TARBALL
 
