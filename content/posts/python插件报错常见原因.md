@@ -27,6 +27,7 @@ clr.AddReference('System')
 clr.AddReference("System.Core")
 clr.AddReference("Kingdee.BOS")
 clr.AddReference("Kingdee.BOS.Log")
+clr.AddReference('Newtonsoft.Json')
 
 from System import *
 from System.Data import *
@@ -49,6 +50,8 @@ from Kingdee.BOS.Core.DynamicForm.PlugIn import *
 from Kingdee.BOS.ServiceHelper import * 
 from Kingdee.BOS.Core.List.PlugIn import *
 from Kingdee.BOS.Core.Metadata.EntityElement import *
+from Newtonsoft.Json import JsonConvert
+from Newtonsoft.Json.Linq import *
 ```
 
 #### C#与Python代码转换
@@ -64,6 +67,21 @@ C#写法是：`List<LockStockArg> lst=new List<LockStockArg>();`
 Python写法就应该是：`lst=List[LockStockArg]();`
 
 **按照这样的方法实例化对象时候，lst.Add(lockStockArgs)就不会报错了**
+
+- **模板类：**把"<T>"改成"[T]"，例如,C#中:var lst=new List<sting>()。Python插件中写成:lst=List\[str\]();
+- **反射代理：**C#插件中有时会用到反射代理类。在Python插件中将反射代理的类直接实例化进行使用。例如：
+
+  **C#代码中：**
+
+  IViewService viewService1 = Kingdee.BOS.Contracts.ServiceFactory.GetService<**IViewService**>(this.Context);
+
+  **Python插件中写成**：viewService1 =**ViewService();当然，还需要引入\**ViewService\**类的命名空间。**
+  
+- list转数组，需要用到ToArray()方法，前提是，不要用Python的list，要用C#的List\[T\]()，否则构造的数据调用插件的一些方法是不被识别的
+
+原文链接：https://vip.kingdee.com/article/332534862269551872?productLineId=1
+
+
 
 ##### 字符串、字典{}包含
 1. 字典包含key：obj.ContainsKey("MoEntryId")
