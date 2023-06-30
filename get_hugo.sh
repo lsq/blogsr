@@ -11,7 +11,7 @@ DEFAULT_BIN_DIR="/usr/bin"
 BIN_DIR=${1:-"$DEFAULT_BIN_DIR"}
 BIN_PATH="$(which hugo)"
 declare -A ARCHES
-ARCHES=( ["arm64"]="ARM64" ["aarch64"]="ARM64"  ["x86_64"]="64bit" ["arm32"]="ARM"  ["armhf"]="ARM" )
+ARCHES=( ["arm64"]="ARM64" ["aarch64"]="ARM64"  ["x86_64"]="amd64" ["arm32"]="ARM"  ["armhf"]="ARM" )
 ARCH=$(arch)
 
 if [ -z "${ARCHES[$ARCH]}" ]; then
