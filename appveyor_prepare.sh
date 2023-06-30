@@ -26,7 +26,7 @@ https://$access_token:x-oauth-basic@github.com
 EOF
 echo ---------------
 bash -x get_hugo.sh
-# which hugo && /usr/bin/hugo -t hugo-theme-den --baseUrl="https://github.com/lsq/lsq.github.io"
+# which hugo && /usr/bin/hugo -t hugo-theme-den -b "https://github.com/lsq/lsq.github.io"
 mkdir $APPVEYOR_JOB_ID
 #bash -x get_latest.sh 2dust/v2rayNG v2rayNG_1.1.9_arm64-v8a.apk
 bash -x get_latest.sh src/readme content/posts/downloaded.md
