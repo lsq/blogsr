@@ -45,7 +45,7 @@ if ! [ $NEW_VERSION = $CUR_VERSION ]; then
   if [ x$OS = x"Windows_NT" ];then
     echo "Downloading Tarball Windows-${ARCHES[$ARCH]}"
     curl -u $GITHUB_USER:$GITHUB_TOKEN -s https://api.github.com/repos/gohugoio/hugo/releases/latest \
-      | grep "browser_download_url.*hugo_extended.*_Windows-${ARCHES[$ARCH]}\.zip" \
+      | grep "browser_download_url.*hugo_extended.*_windows-${ARCHES[$ARCH]}\.zip" \
       | cut -d ":" -f 2,3 \
       | tr -d \" \
       | xargs -I {} curl -sOL {}
